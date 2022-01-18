@@ -67,11 +67,11 @@ class ViewController: UIViewController {
 
         renderView = {
             let rv = UIView()
-            rv.backgroundColor = .black
+            rv.backgroundColor = .init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
             return rv
         }()
 
-        scrollView.addSubview(renderView)
+        scrollView.addSubview(renderView) // not `view.addSubView()` because the scrollView should be on the top to recieve user's gesture
     }
 
     override func viewDidLoad() {
@@ -86,22 +86,32 @@ class ViewController: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
+        scrollView.zoomScale = 1.0 // reset zoomScale
+
         XCLog(.trace,
               """
               view.frame \(view.frame)
               scrollView.frame \(scrollView.frame)
               scrollContentView.frame \(scrollContentView.frame)
+              renderView.frame \(renderView.frame)
               """)
 
+        // change when pages.count changes
         scrollContentView.frame.size = .init(width: scrollView.frame.width * 1.0, height: scrollView.frame.height * 2.0)
         scrollView.contentSize = scrollContentView.frame.size
-        renderView.frame.size = .init(width: scrollView.frame.width * 1.0, height: scrollView.frame.height * 1.0)
+
+        setRenderViewToScreen()
 
         XCLog(.trace,
               """
               view.frame \(view.frame)
               scrollView.frame \(scrollView.frame)
               scrollContentView.frame \(scrollContentView.frame)
+              renderView.frame \(renderView.frame)
               """)
+    }
+
+    func setRenderViewToScreen() {
+        renderView.frame.size = .init(width: scrollView.frame.width * 1.0, height: scrollView.frame.height * 1.0)
     }
 }
