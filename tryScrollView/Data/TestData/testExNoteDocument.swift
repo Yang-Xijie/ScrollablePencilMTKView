@@ -24,6 +24,6 @@ let test_triangle = ExShape(type: .triangle,
                             vertices: test_trianglePoints)
 
 let testExNote = ExNoteDocument(title: "test document",
-                                numberOfPages: 1, pageSize: .A4, pageStyle: .blank,
+                                numberOfPages: 2, pageSize: .A4, pageStyle: .blank,
                                 strokes: [test_stroke],
                                 shapes: [test_triangle])

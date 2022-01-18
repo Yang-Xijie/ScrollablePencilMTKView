@@ -122,7 +122,7 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         scrollView.zoomScale = 1.0 // reset zoomScale
 
-        let doc_hwratio: Float = document.size.height * Float(document.pages.count) / document.size.width
+        let doc_hwratio: Float = document.size.height / document.size.width
 
         // change when pages.count changes
         scrollContentView.frame.size = .init(width: scrollView.frame.width,

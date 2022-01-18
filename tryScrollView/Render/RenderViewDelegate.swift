@@ -63,6 +63,9 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
 
 //        for shape in document.shapes {
 //            for vertex in shape.vertices {
+//                let x_doc = vertex.x
+//                let x_docRatio = x_doc / document.size.width
+//
 //                vertices.append(Vertex(pos: vertex.vector))
 //            }
 //

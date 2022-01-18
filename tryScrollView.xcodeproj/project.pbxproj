@@ -90,13 +90,13 @@
 		48AA302B2796791B00527BAD /* DataStructure */ = {
 			isa = PBXGroup;
 			children = (
+				48AA30322796791B00527BAD /* ExNoteDocument.swift */,
+				48AA30302796791B00527BAD /* ExPage.swift */,
+				48AA30312796791B00527BAD /* ExStroke.swift */,
+				48AA302F2796791B00527BAD /* ExShape.swift */,
 				48AA302C2796791B00527BAD /* ExPosition.swift */,
 				48AA302D2796791B00527BAD /* ExColor.swift */,
 				48AA302E2796791B00527BAD /* ExPoint.swift */,
-				48AA302F2796791B00527BAD /* ExShape.swift */,
-				48AA30302796791B00527BAD /* ExPage.swift */,
-				48AA30312796791B00527BAD /* ExStroke.swift */,
-				48AA30322796791B00527BAD /* ExNoteDocument.swift */,
 			);
 			path = DataStructure;
 			sourceTree = "<group>";
