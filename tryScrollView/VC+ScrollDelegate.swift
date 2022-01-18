@@ -13,7 +13,6 @@ extension ViewController: UIScrollViewDelegate {
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
         XCLog(.trace,
               """
-              view.frame \(view!.frame)
               scrollView.frame \(scrollView.frame)
               scrollContentView.frame \(scrollContentView.frame)
               renderView.frame \(renderView.frame)
@@ -23,7 +22,6 @@ extension ViewController: UIScrollViewDelegate {
 
         XCLog(.trace,
               """
-              view.frame \(view!.frame)
               scrollView.frame \(scrollView.frame)
               scrollContentView.frame \(scrollContentView.frame)
               renderView.frame \(renderView.frame)

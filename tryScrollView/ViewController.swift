@@ -30,7 +30,7 @@ class ViewController: UIViewController {
             sv.isScrollEnabled = true // default is true
             sv.isUserInteractionEnabled = true // default: true
 
-            sv.bounces = true // add default animation
+            sv.bounces = false // add default animation
 
             // MARK: zoom
 
@@ -68,10 +68,13 @@ class ViewController: UIViewController {
         renderView = {
             let rv = UIView()
             rv.backgroundColor = .init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
+//            rv.autoResizeDrawable = true
             return rv
         }()
 
-        scrollView.addSubview(renderView) // not `view.addSubView()` because the scrollView should be on the top to recieve user's gesture
+        // not `view.addSubView()` because the scrollView should be on the top to recieve user's gesture
+        // notice: renderView.frame is relative to scrollContentView
+        scrollContentView.addSubview(renderView)
     }
 
     override func viewDidLoad() {
@@ -112,7 +115,21 @@ class ViewController: UIViewController {
     }
 
     func setRenderViewToScreen() {
-        renderView.frame.size = .init(width: scrollView.frame.width * 1.0, height: scrollView.frame.height * 1.0)
-        self.renderView.frame.origin = scrollView.contentOffset
+        if scrollView.zoomScale < 1.0 {
+            let w = min(scrollView.frame.width * 1.0 / scrollView.zoomScale,
+                        scrollContentView.frame.width * 1.0 / scrollView.zoomScale)
+            let h = min(scrollView.frame.height * 1.0 / scrollView.zoomScale,
+                        scrollContentView.frame.height * 1.0 / scrollView.zoomScale)
+            renderView.frame.size = .init(width: w, height: h)
+        } else {
+            // correct
+            let w = scrollView.frame.width * 1.0 / scrollView.zoomScale
+            let h = scrollView.frame.height * 1.0 / scrollView.zoomScale
+            renderView.frame.size = .init(width: w, height: h)
+        }
+
+        let x = scrollView.contentOffset.x / scrollView.zoomScale
+        let y = scrollView.contentOffset.y / scrollView.zoomScale
+        renderView.frame.origin = .init(x: x, y: y)
     }
 }
