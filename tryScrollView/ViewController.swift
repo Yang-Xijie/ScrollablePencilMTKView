@@ -131,20 +131,22 @@ class ViewController: UIViewController {
 
         XCLog(.trace,
               """
-              view.frame \(view.frame)
               scrollView.frame \(scrollView.frame)
               scrollContentView.frame \(scrollContentView.frame)
               renderView.frame \(renderView.frame)
+              renderView.drawableSize \(renderView.drawableSize)
+              scrollView.contentOffset \(scrollView.contentOffset)
               """)
 
         setRenderViewToScreen()
 
         XCLog(.trace,
               """
-              view.frame \(view.frame)
               scrollView.frame \(scrollView.frame)
               scrollContentView.frame \(scrollContentView.frame)
               renderView.frame \(renderView.frame)
+              renderView.drawableSize \(renderView.drawableSize)
+              scrollView.contentOffset \(scrollView.contentOffset)
               """)
     }
 

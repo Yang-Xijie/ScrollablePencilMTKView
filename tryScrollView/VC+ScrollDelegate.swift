@@ -16,6 +16,8 @@ extension ViewController: UIScrollViewDelegate {
               scrollView.frame \(scrollView.frame)
               scrollContentView.frame \(scrollContentView.frame)
               renderView.frame \(renderView.frame)
+              renderView.drawableSize \(renderView.drawableSize)
+              scrollView.contentOffset \(scrollView.contentOffset)
               """)
 
         setRenderViewToScreen()
@@ -25,6 +27,8 @@ extension ViewController: UIScrollViewDelegate {
               scrollView.frame \(scrollView.frame)
               scrollContentView.frame \(scrollContentView.frame)
               renderView.frame \(renderView.frame)
+              renderView.drawableSize \(renderView.drawableSize)
+              scrollView.contentOffset \(scrollView.contentOffset)
               """)
     }
 
@@ -33,11 +37,11 @@ extension ViewController: UIScrollViewDelegate {
 
         XCLog(.trace,
               """
-              view.frame \(view!.frame)
               scrollView.frame \(scrollView.frame)
               scrollContentView.frame \(scrollContentView.frame)
-              scrollView.contentOffset \(scrollView.contentOffset)
               renderView.frame \(renderView.frame)
+              renderView.drawableSize \(renderView.drawableSize)
+              scrollView.contentOffset \(scrollView.contentOffset)
               """)
     }
 }
