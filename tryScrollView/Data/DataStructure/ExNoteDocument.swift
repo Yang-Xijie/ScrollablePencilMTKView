@@ -31,10 +31,41 @@ struct ExNoteDocument {
     /// 文档的所有矢量形状
     var shapes: [ExShape]
 
-    // MARK: -
+    // MARK: - calculated var
 
-    var size:ExSize {
+    /// document.size
+    var size: ExSize {
         return ExSize(width: pages.first!.size.width, height: pages.first!.size.height * Float(pages.count))
     }
-}
 
+    var pageSize: ExSize {
+        return ExSize(width: pages.first!.size.width, height: pages.first!.size.height)
+    }
+
+    /// esay to render seperator
+    ///
+    /// seperator appear at the end of each page
+    var pageSeperators: [ExShape] {
+        guard pages.count >= 1 else {
+            return []
+        }
+
+        let seperatorWidth: Float = 0.5
+
+        var seperators: [ExShape] = []
+        for i in 1 ... pages.count {
+            let y_center = pageSize.height * Float(i)
+            seperators.append(ExShape(type: .triangle,
+                                      color: .seperator,
+                                      vertices: [.init(x: 0.0, y: y_center - seperatorWidth),
+                                                 .init(x: pageSize.width, y: y_center - seperatorWidth),
+                                                 .init(x: 0.0, y: y_center)]))
+            seperators.append(ExShape(type: .triangle,
+                                      color: .seperator,
+                                      vertices: [.init(x: pageSize.width, y: y_center - seperatorWidth),
+                                                 .init(x: 0.0, y: y_center),
+                                                 .init(x: pageSize.width, y: y_center)]))
+        }
+        return seperators
+    }
+}

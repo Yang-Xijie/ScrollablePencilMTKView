@@ -54,6 +54,13 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
 
         var vertices: [Vertex] = []
         var colors: [Color] = []
+        
+        for seperatorTriangle in document.pageSeperators {
+            for vertex in seperatorTriangle.vertices {
+                vertices.append(Vertex(pos: [vertex.x, vertex.y]))
+            }
+            colors.append(Color(color: seperatorTriangle.color.array))
+        }
 
         for shape in document.shapes {
             for vertex in shape.vertices {

@@ -15,8 +15,8 @@ let test_stroke = ExStroke(type: .common,
 /// 一个占满第一页的黑色三角形
 let test_trianglePoints1 = [
     ExPosition(x: ExPageSize.A4.width / 2.0, y: 0.0),
-    ExPosition(x: 0.0, y: ExPageSize.A4.height),
-    ExPosition(x: ExPageSize.A4.width, y: ExPageSize.A4.height),
+    ExPosition(x: 0.0, y: ExPageSize.A4.height / 2.0),
+    ExPosition(x: ExPageSize.A4.width, y: ExPageSize.A4.height / 2.0),
 ]
 
 let test_triangle1 = ExShape(type: .triangle,
