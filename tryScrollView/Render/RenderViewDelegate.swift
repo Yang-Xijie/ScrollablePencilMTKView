@@ -31,12 +31,6 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
             print("Unable to compile render pipeline state: \(error)")
             return nil
         }
-
-        // MARK: use shape in document to create vertex data
-
-        for shape in document.shapes {
-            XCLog(.trace, "\(shape)")
-        }
     }
 
     // MARK: - draw
@@ -46,7 +40,7 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
 
         guard let commandBuffer = commandQueue.makeCommandBuffer() else { return }
         guard let renderPassDescriptor = view.currentRenderPassDescriptor else { return }
-        renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(1, 1, 1, 1)
+        renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(1, 1, 1, 1) // white
         guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else { return }
         renderEncoder.setRenderPipelineState(pipelineState)
 
@@ -58,8 +52,10 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
                               Color(color: [0.0, 1.0, 0.0, 1.0])]
         var vertices: [Vertex] = []
         var colors: [Color] = []
-        vertices = default_vertices
-        colors = default_colors
+//        vertices = default_vertices
+//        colors = default_colors
+
+        // MARK: use shape in document to create vertex data
 
         for shape in document.shapes {
             for vertex in shape.vertices {

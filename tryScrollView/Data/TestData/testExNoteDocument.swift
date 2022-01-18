@@ -13,17 +13,28 @@ let test_stroke = ExStroke(type: .common,
                            path: test_strokepoints)
 
 /// 一个占满第一页的黑色三角形
-let test_trianglePoints = [
+let test_trianglePoints1 = [
     ExPosition(x: ExPageSize.A4.width / 2.0, y: 0.0),
     ExPosition(x: 0.0, y: ExPageSize.A4.height),
     ExPosition(x: ExPageSize.A4.width, y: ExPageSize.A4.height),
 ]
 
-let test_triangle = ExShape(type: .triangle,
-                            color: .black,
-                            vertices: test_trianglePoints)
+let test_triangle1 = ExShape(type: .triangle,
+                             color: .black,
+                             vertices: test_trianglePoints1)
+
+/// 第一页左上角的蓝色三角形
+let test_trianglePoints2 = [
+    ExPosition(x: 0.0, y: 0.0),
+    ExPosition(x: 0.0, y: ExPageSize.A4.height / 4.0),
+    ExPosition(x: ExPageSize.A4.width / 4.0, y: 0.0),
+]
+
+let test_triangle2 = ExShape(type: .triangle,
+                             color: .red,
+                             vertices: test_trianglePoints2)
 
 let testExNote = ExNoteDocument(title: "test document",
                                 numberOfPages: 2, pageSize: .A4, pageStyle: .blank,
                                 strokes: [test_stroke],
-                                shapes: [test_triangle])
+                                shapes: [test_triangle1, test_triangle2])

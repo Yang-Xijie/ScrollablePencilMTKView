@@ -83,7 +83,7 @@ class ViewController: UIViewController {
 
             rv.device = defaultDevice
 
-            rv.preferredFramesPerSecond = 60
+            rv.preferredFramesPerSecond = 120
             rv.isPaused = false
             // mtkView.enableSetNeedsDisplay = true // TODO: when Apple Pencil or finger strokes, render
             // mtkView.draw()
@@ -110,13 +110,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-
-        XCLog(.trace,
-              """
-              view.frame \(view.frame)
-              scrollView.frame \(scrollView.frame)
-              """)
     }
 
     override func viewDidLayoutSubviews() {
@@ -129,25 +122,25 @@ class ViewController: UIViewController {
                                              height: scrollView.frame.width * CGFloat(doc_hwratio))
         scrollView.contentSize = scrollContentView.frame.size
 
-        XCLog(.trace,
-              """
-              scrollView.frame \(scrollView.frame)
-              scrollContentView.frame \(scrollContentView.frame)
-              renderView.frame \(renderView.frame)
-              renderView.drawableSize \(renderView.drawableSize)
-              scrollView.contentOffset \(scrollView.contentOffset)
-              """)
+//        XCLog(.trace,
+//              """
+//              scrollView.frame \(scrollView.frame)
+//              scrollContentView.frame \(scrollContentView.frame)
+//              renderView.frame \(renderView.frame)
+//              renderView.drawableSize \(renderView.drawableSize)
+//              scrollView.contentOffset \(scrollView.contentOffset)
+//              """)
 
         setRenderViewToScreen()
 
-        XCLog(.trace,
-              """
-              scrollView.frame \(scrollView.frame)
-              scrollContentView.frame \(scrollContentView.frame)
-              renderView.frame \(renderView.frame)
-              renderView.drawableSize \(renderView.drawableSize)
-              scrollView.contentOffset \(scrollView.contentOffset)
-              """)
+//        XCLog(.trace,
+//              """
+//              scrollView.frame \(scrollView.frame)
+//              scrollContentView.frame \(scrollContentView.frame)
+//              renderView.frame \(renderView.frame)
+//              renderView.drawableSize \(renderView.drawableSize)
+//              scrollView.contentOffset \(scrollView.contentOffset)
+//              """)
     }
 
     func setRenderViewToScreen() {
