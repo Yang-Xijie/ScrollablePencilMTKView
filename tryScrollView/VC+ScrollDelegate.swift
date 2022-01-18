@@ -14,9 +14,11 @@ extension ViewController: UIScrollViewDelegate {
         XCLog(.trace,
               """
               scrollView.frame \(scrollView.frame)
-              scrollContentView.frame \(scrollContentView.frame)
               renderView.frame \(renderView.frame)
               renderView.drawableSize \(renderView.drawableSize)
+              
+              scrollContentView.frame \(scrollContentView.frame)
+              scrollView.contentSize \(scrollView.contentSize)
               scrollView.contentOffset \(scrollView.contentOffset)
               """)
 
@@ -25,9 +27,11 @@ extension ViewController: UIScrollViewDelegate {
         XCLog(.trace,
               """
               scrollView.frame \(scrollView.frame)
-              scrollContentView.frame \(scrollContentView.frame)
               renderView.frame \(renderView.frame)
               renderView.drawableSize \(renderView.drawableSize)
+              
+              scrollContentView.frame \(scrollContentView.frame)
+              scrollView.contentSize \(scrollView.contentSize)
               scrollView.contentOffset \(scrollView.contentOffset)
               """)
     }
@@ -38,9 +42,11 @@ extension ViewController: UIScrollViewDelegate {
         XCLog(.trace,
               """
               scrollView.frame \(scrollView.frame)
-              scrollContentView.frame \(scrollContentView.frame)
               renderView.frame \(renderView.frame)
               renderView.drawableSize \(renderView.drawableSize)
+              
+              scrollContentView.frame \(scrollContentView.frame)
+              scrollView.contentSize \(scrollView.contentSize)
               scrollView.contentOffset \(scrollView.contentOffset)
               """)
     }

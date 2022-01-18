@@ -52,17 +52,28 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
 
         // MARK: set data
 
-        let vertices: [Vertex] =
-            [Vertex(pos: [-1.0, 1.0]), Vertex(pos: [-1.0, -1.0]), Vertex(pos: [1.0, 1.0]),
-             Vertex(pos: [1.0, -1.0]), Vertex(pos: [-1.0, -1.0]), Vertex(pos: [1.0, 1.0])]
+        let default_vertices = [Vertex(pos: [-1.0, 1.0]), Vertex(pos: [-1.0, -1.0]), Vertex(pos: [1.0, 1.0]),
+                                Vertex(pos: [1.0, -1.0]), Vertex(pos: [-1.0, -1.0]), Vertex(pos: [1.0, 1.0])]
+        let default_colors = [Color(color: [1.0, 0.0, 0.0, 1.0]),
+                              Color(color: [0.0, 1.0, 0.0, 1.0])]
+        var vertices: [Vertex] = []
+        var colors: [Color] = []
+        vertices = default_vertices
+        colors = default_colors
+
+//        for shape in document.shapes {
+//            for vertex in shape.vertices {
+//                vertices.append(Vertex(pos: vertex.vector))
+//            }
+//
+//            colors.append(Color(color: shape.color.array))
+//        }
 
         let vertexBuffer = device.makeBuffer(bytes: vertices,
                                              length: vertices.count * MemoryLayout<Vertex>.stride,
                                              options: [])!
         renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
 
-        let colors: [Color] = [Color(color: [1.0, 0.0, 0.0, 1.0]),
-                               Color(color: [0.0, 1.0, 0.0, 1.0])]
         let colorBuffer = device.makeBuffer(bytes: colors,
                                             length: colors.count * MemoryLayout<Color>.stride,
                                             options: [])!

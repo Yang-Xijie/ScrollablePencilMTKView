@@ -152,13 +152,16 @@ class ViewController: UIViewController {
 
     func setRenderViewToScreen() {
         if scrollView.zoomScale < 1.0 {
-            renderView.autoResizeDrawable = true
+            renderView.autoResizeDrawable = false
 
             let w = min(scrollView.frame.width * 1.0 / scrollView.zoomScale,
                         scrollContentView.frame.width * 1.0 / scrollView.zoomScale)
             let h = min(scrollView.frame.height * 1.0 / scrollView.zoomScale,
                         scrollContentView.frame.height * 1.0 / scrollView.zoomScale)
             renderView.frame.size = .init(width: w, height: h)
+            
+            renderView.drawableSize = .init(width: renderView.frame.width * UIScreen.main.nativeScale * scrollView.zoomScale,
+                                            height: renderView.frame.height * UIScreen.main.nativeScale * scrollView.zoomScale)
 
         } else {
             renderView.autoResizeDrawable = false
