@@ -1,22 +1,29 @@
 // ViewController.swift
 
+import MetalKit
 import UIKit
 import XCLog
 
 class ViewController: UIViewController {
     var scrollView: UIScrollView!
+    var scrollContentView: UIView!
+    var renderView: MTKView!
 
     override func loadView() {
+        // MARK: - view
+
         view = {
             let v = UIView()
             v.backgroundColor = .cyan
             return v
         }()
 
+        // MARK: - scrollView
+
         scrollView = {
             let sv = UIScrollView()
 
-            sv.backgroundColor = .orange // the blank when scroll to edges
+            sv.backgroundColor = .yellow // the blank when scroll to edges
 
             sv.contentInsetAdjustmentBehavior = .never // let mktView inset the bottom safe area
 
@@ -45,6 +52,18 @@ class ViewController: UIViewController {
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
         ])
+
+        // MARK: - scrollContentView
+
+        scrollContentView = {
+            let scv = UIView()
+            scv.backgroundColor = .orange
+            return scv
+        }()
+
+        scrollView.addSubview(scrollContentView)
+
+        // MARK: - renderView
     }
 
     override func viewDidLoad() {
@@ -63,6 +82,17 @@ class ViewController: UIViewController {
               """
               view.frame \(view.frame)
               scrollView.frame \(scrollView.frame)
+              scrollContentView.frame \(scrollContentView.frame)
+              """)
+
+        scrollContentView.frame.size = .init(width: scrollView.frame.width * 0.8, height: scrollView.frame.height * 2.0)
+        scrollView.contentSize = scrollContentView.frame.size
+
+        XCLog(.trace,
+              """
+              view.frame \(view.frame)
+              scrollView.frame \(scrollView.frame)
+              scrollContentView.frame \(scrollContentView.frame)
               """)
     }
 }
