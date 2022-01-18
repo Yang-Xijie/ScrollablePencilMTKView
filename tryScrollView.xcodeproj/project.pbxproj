@@ -73,8 +73,8 @@
 		48AA30282796791B00527BAD /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				48AA30292796791B00527BAD /* TestData */,
 				48AA302B2796791B00527BAD /* DataStructure */,
+				48AA30292796791B00527BAD /* TestData */,
 			);
 			path = Data;
 			sourceTree = "<group>";

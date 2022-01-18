@@ -16,7 +16,7 @@ let test_stroke = ExStroke(type: .common,
 let test_trianglePoints = [
     ExPosition(x: ExPageSize.A4.width / 2.0, y: 0.0),
     ExPosition(x: 0.0, y: ExPageSize.A4.height),
-    ExPosition(x: ExPageSize.A4.width, y: ExPageSize.A4.height)
+    ExPosition(x: ExPageSize.A4.width, y: ExPageSize.A4.height),
 ]
 
 let test_triangle = ExShape(type: .triangle,
@@ -24,6 +24,6 @@ let test_triangle = ExShape(type: .triangle,
                             vertices: test_trianglePoints)
 
 let testExNote = ExNoteDocument(title: "test document",
-                                numberOfPages: 2, pageSize: .A4, pageStyle: .blank,
+                                numberOfPages: 1, pageSize: .A4, pageStyle: .blank,
                                 strokes: [test_stroke],
                                 shapes: [test_triangle])

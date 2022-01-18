@@ -100,8 +100,6 @@ class ViewController: UIViewController {
             renderViewDelegate = tempRenderer // neccessary
             rv.delegate = renderViewDelegate
 
-            rv.autoResizeDrawable = true
-
             return rv
         }()
 
@@ -124,6 +122,13 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         scrollView.zoomScale = 1.0 // reset zoomScale
 
+        let doc_hwratio: Float = document.size.height * Float(document.pages.count) / document.size.width
+
+        // change when pages.count changes
+        scrollContentView.frame.size = .init(width: scrollView.frame.width,
+                                             height: scrollView.frame.width * CGFloat(doc_hwratio))
+        scrollView.contentSize = scrollContentView.frame.size
+
         XCLog(.trace,
               """
               view.frame \(view.frame)
@@ -131,10 +136,6 @@ class ViewController: UIViewController {
               scrollContentView.frame \(scrollContentView.frame)
               renderView.frame \(renderView.frame)
               """)
-
-        // change when pages.count changes
-        scrollContentView.frame.size = .init(width: scrollView.frame.width * 1.0, height: scrollView.frame.height * 2.0)
-        scrollView.contentSize = scrollContentView.frame.size
 
         setRenderViewToScreen()
 
@@ -149,16 +150,23 @@ class ViewController: UIViewController {
 
     func setRenderViewToScreen() {
         if scrollView.zoomScale < 1.0 {
+            renderView.autoResizeDrawable = true
+
             let w = min(scrollView.frame.width * 1.0 / scrollView.zoomScale,
                         scrollContentView.frame.width * 1.0 / scrollView.zoomScale)
             let h = min(scrollView.frame.height * 1.0 / scrollView.zoomScale,
                         scrollContentView.frame.height * 1.0 / scrollView.zoomScale)
             renderView.frame.size = .init(width: w, height: h)
+
         } else {
-            // correct
+            renderView.autoResizeDrawable = false
+
             let w = scrollView.frame.width * 1.0 / scrollView.zoomScale
             let h = scrollView.frame.height * 1.0 / scrollView.zoomScale
             renderView.frame.size = .init(width: w, height: h)
+
+            renderView.drawableSize = .init(width: scrollView.frame.width * UIScreen.main.nativeScale,
+                                            height: scrollView.frame.height * UIScreen.main.nativeScale)
         }
 
         let x = scrollView.contentOffset.x / scrollView.zoomScale
