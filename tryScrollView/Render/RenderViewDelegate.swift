@@ -61,16 +61,25 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
         vertices = default_vertices
         colors = default_colors
 
-//        for shape in document.shapes {
-//            for vertex in shape.vertices {
-//                let x_doc = vertex.x
-//                let x_docRatio = x_doc / document.size.width
-//
-//                vertices.append(Vertex(pos: vertex.vector))
-//            }
-//
-//            colors.append(Color(color: shape.color.array))
-//        }
+        for shape in document.shapes {
+            for vertex in shape.vertices {
+                let x_doc: Float = vertex.x
+                let x_docRatio: Float = x_doc / document.size.width
+                let x_scrollContent: Float = x_docRatio * Float(scrollView.contentSize.width)
+                let x_fenzi: Float = x_scrollContent - (Float(scrollView.contentOffset.x) + Float(renderView.frame.width * scrollView.zoomScale / 2.0))
+                let x_renderViewNorm: Float = x_fenzi / (Float(renderView.frame.width * scrollView.zoomScale) / 2.0)
+
+                let y_doc: Float = vertex.y
+                let y_docRatio: Float = y_doc / document.size.height
+                let y_scrollContent: Float = y_docRatio * Float(scrollView.contentSize.height)
+                let y_fenzi: Float = y_scrollContent - (Float(scrollView.contentOffset.y) + Float(renderView.frame.height * scrollView.zoomScale / 2.0))
+                let y_renderViewNorm: Float = -1.0 * y_fenzi / (Float(renderView.frame.height * scrollView.zoomScale) / 2.0) // notice: minus
+
+                vertices.append(Vertex(pos: [x_renderViewNorm, y_renderViewNorm]))
+            }
+
+            colors.append(Color(color: shape.color.array))
+        }
 
         let vertexBuffer = device.makeBuffer(bytes: vertices,
                                              length: vertices.count * MemoryLayout<Vertex>.stride,
