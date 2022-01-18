@@ -9,6 +9,16 @@
 /* Begin PBXBuildFile section */
 		48AA302127965D3C00527BAD /* VC+ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA302027965D3C00527BAD /* VC+ScrollDelegate.swift */; };
 		48AA302427965DBA00527BAD /* XCLog in Frameworks */ = {isa = PBXBuildFile; productRef = 48AA302327965DBA00527BAD /* XCLog */; };
+		48AA3027279678C800527BAD /* RenderViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA3026279678C800527BAD /* RenderViewDelegate.swift */; };
+		48AA30332796791B00527BAD /* testExNoteDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA302A2796791B00527BAD /* testExNoteDocument.swift */; };
+		48AA30342796791B00527BAD /* ExPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA302C2796791B00527BAD /* ExPosition.swift */; };
+		48AA30352796791B00527BAD /* ExColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA302D2796791B00527BAD /* ExColor.swift */; };
+		48AA30362796791B00527BAD /* ExPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA302E2796791B00527BAD /* ExPoint.swift */; };
+		48AA30372796791B00527BAD /* ExShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA302F2796791B00527BAD /* ExShape.swift */; };
+		48AA30382796791B00527BAD /* ExPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA30302796791B00527BAD /* ExPage.swift */; };
+		48AA30392796791B00527BAD /* ExStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA30312796791B00527BAD /* ExStroke.swift */; };
+		48AA303A2796791B00527BAD /* ExNoteDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA30322796791B00527BAD /* ExNoteDocument.swift */; };
+		48AA30432796794100527BAD /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 48AA303E2796794100527BAD /* Shaders.metal */; };
 		48DECD8A27965BE3005BF878 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DECD8927965BE3005BF878 /* AppDelegate.swift */; };
 		48DECD8C27965BE3005BF878 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DECD8B27965BE3005BF878 /* SceneDelegate.swift */; };
 		48DECD8E27965BE3005BF878 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DECD8D27965BE3005BF878 /* ViewController.swift */; };
@@ -18,6 +28,18 @@
 
 /* Begin PBXFileReference section */
 		48AA302027965D3C00527BAD /* VC+ScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+ScrollDelegate.swift"; sourceTree = "<group>"; };
+		48AA3026279678C800527BAD /* RenderViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderViewDelegate.swift; sourceTree = "<group>"; };
+		48AA302A2796791B00527BAD /* testExNoteDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testExNoteDocument.swift; sourceTree = "<group>"; };
+		48AA302C2796791B00527BAD /* ExPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExPosition.swift; sourceTree = "<group>"; };
+		48AA302D2796791B00527BAD /* ExColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExColor.swift; sourceTree = "<group>"; };
+		48AA302E2796791B00527BAD /* ExPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExPoint.swift; sourceTree = "<group>"; };
+		48AA302F2796791B00527BAD /* ExShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExShape.swift; sourceTree = "<group>"; };
+		48AA30302796791B00527BAD /* ExPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExPage.swift; sourceTree = "<group>"; };
+		48AA30312796791B00527BAD /* ExStroke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExStroke.swift; sourceTree = "<group>"; };
+		48AA30322796791B00527BAD /* ExNoteDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExNoteDocument.swift; sourceTree = "<group>"; };
+		48AA303C2796794100527BAD /* ShaderDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderDefinitions.h; sourceTree = "<group>"; };
+		48AA303E2796794100527BAD /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		48AA30412796794100527BAD /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		48DECD8627965BE3005BF878 /* tryScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tryScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48DECD8927965BE3005BF878 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48DECD8B27965BE3005BF878 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +70,55 @@
 			path = Scene;
 			sourceTree = "<group>";
 		};
+		48AA30282796791B00527BAD /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				48AA30292796791B00527BAD /* TestData */,
+				48AA302B2796791B00527BAD /* DataStructure */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		48AA30292796791B00527BAD /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				48AA302A2796791B00527BAD /* testExNoteDocument.swift */,
+			);
+			path = TestData;
+			sourceTree = "<group>";
+		};
+		48AA302B2796791B00527BAD /* DataStructure */ = {
+			isa = PBXGroup;
+			children = (
+				48AA302C2796791B00527BAD /* ExPosition.swift */,
+				48AA302D2796791B00527BAD /* ExColor.swift */,
+				48AA302E2796791B00527BAD /* ExPoint.swift */,
+				48AA302F2796791B00527BAD /* ExShape.swift */,
+				48AA30302796791B00527BAD /* ExPage.swift */,
+				48AA30312796791B00527BAD /* ExStroke.swift */,
+				48AA30322796791B00527BAD /* ExNoteDocument.swift */,
+			);
+			path = DataStructure;
+			sourceTree = "<group>";
+		};
+		48AA303B2796794100527BAD /* Render */ = {
+			isa = PBXGroup;
+			children = (
+				48AA3026279678C800527BAD /* RenderViewDelegate.swift */,
+				48AA303C2796794100527BAD /* ShaderDefinitions.h */,
+				48AA303E2796794100527BAD /* Shaders.metal */,
+			);
+			path = Render;
+			sourceTree = "<group>";
+		};
+		48AA30402796794100527BAD /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				48AA30412796794100527BAD /* Bridging-Header.h */,
+			);
+			path = Swift;
+			sourceTree = "<group>";
+		};
 		48DECD7D27965BE3005BF878 = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +141,9 @@
 				48AA3025279665F400527BAD /* Scene */,
 				48DECD8D27965BE3005BF878 /* ViewController.swift */,
 				48AA302027965D3C00527BAD /* VC+ScrollDelegate.swift */,
+				48AA30282796791B00527BAD /* Data */,
+				48AA303B2796794100527BAD /* Render */,
+				48AA30402796794100527BAD /* Swift */,
 				48DECD9227965BE7005BF878 /* Assets.xcassets */,
 				48DECD9427965BE7005BF878 /* LaunchScreen.storyboard */,
 				48DECD9727965BE7005BF878 /* Info.plist */,
@@ -153,10 +227,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48AA30342796791B00527BAD /* ExPosition.swift in Sources */,
 				48AA302127965D3C00527BAD /* VC+ScrollDelegate.swift in Sources */,
+				48AA30372796791B00527BAD /* ExShape.swift in Sources */,
 				48DECD8E27965BE3005BF878 /* ViewController.swift in Sources */,
+				48AA3027279678C800527BAD /* RenderViewDelegate.swift in Sources */,
+				48AA30352796791B00527BAD /* ExColor.swift in Sources */,
 				48DECD8A27965BE3005BF878 /* AppDelegate.swift in Sources */,
 				48DECD8C27965BE3005BF878 /* SceneDelegate.swift in Sources */,
+				48AA30432796794100527BAD /* Shaders.metal in Sources */,
+				48AA30382796791B00527BAD /* ExPage.swift in Sources */,
+				48AA30362796791B00527BAD /* ExPoint.swift in Sources */,
+				48AA30392796791B00527BAD /* ExStroke.swift in Sources */,
+				48AA30332796791B00527BAD /* testExNoteDocument.swift in Sources */,
+				48AA303A2796791B00527BAD /* ExNoteDocument.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +315,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "tryScrollView/Swift/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -285,6 +370,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "tryScrollView/Swift/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
