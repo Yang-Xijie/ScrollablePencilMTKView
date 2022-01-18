@@ -33,7 +33,8 @@ struct ExNoteDocument {
 
     // MARK: -
 
-    var size:ExPageSize {
-        return ExPageSize(width: pages.first!.size.width, height: pages.first!.size.height * Float(pages.count))
+    var size:ExSize {
+        return ExSize(width: pages.first!.size.width, height: pages.first!.size.height * Float(pages.count))
     }
 }
+
