@@ -7,7 +7,7 @@ import XCLog
 class ViewController: UIViewController {
     var scrollView: UIScrollView!
     var scrollContentView: UIView!
-    var renderView: MTKView!
+    var renderView: UIView!
 
     override func loadView() {
         // MARK: - view
@@ -64,6 +64,14 @@ class ViewController: UIViewController {
         scrollView.addSubview(scrollContentView)
 
         // MARK: - renderView
+
+        renderView = {
+            let rv = UIView()
+            rv.backgroundColor = .black
+            return rv
+        }()
+
+        scrollView.addSubview(renderView)
     }
 
     override func viewDidLoad() {
@@ -85,8 +93,9 @@ class ViewController: UIViewController {
               scrollContentView.frame \(scrollContentView.frame)
               """)
 
-        scrollContentView.frame.size = .init(width: scrollView.frame.width * 0.8, height: scrollView.frame.height * 2.0)
+        scrollContentView.frame.size = .init(width: scrollView.frame.width * 1.0, height: scrollView.frame.height * 2.0)
         scrollView.contentSize = scrollContentView.frame.size
+        renderView.frame.size = .init(width: scrollView.frame.width * 1.0, height: scrollView.frame.height * 1.0)
 
         XCLog(.trace,
               """
