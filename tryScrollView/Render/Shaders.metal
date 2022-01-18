@@ -1,5 +1,3 @@
-// Shaders.metal
-
 #include <metal_stdlib>
 #include "ShaderDefinitions.h"
 using namespace metal;
@@ -7,37 +5,28 @@ using namespace metal;
 struct VertexOut {
 	float4 color;
 	float4 pos[[position]];
-	float pointsize[[point_size]] = 100.0; // TODO: use msaa to 'soften' edges with a resolvetexture
 };
 
-/// return the position and color of each pixel in the triangle
-///
-/// the vertex shader will take the entire buffer (actually a pointer to it) and a vertex ID which indexes into this buffer as input
-///
-/// Vertex shaders which simply pass data through mostly unchanged to the rasterizer are a very common pattern, and are called pass-through vertex shaders.
 vertex VertexOut vertexShader(
 	const device Vertex *vertexArray[[buffer(0)]], // consistent with: `renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)`
-    const device Color *colorArray[[buffer(1)]],
-    unsigned int vid[[vertex_id]])
-{
+	const device Color *colorArray[[buffer(1)]],
+	const device TransfromConfig *transformConfigArray[[buffer(2)]],
+	unsigned int vid[[vertex_id]]) {
 	Vertex in = vertexArray[vid];
-
+	TransfromConfig info = transformConfigArray[0];
 	VertexOut out;
-    out.color = colorArray[vid / 3].color;
 
-	out.pos = float4(in.pos.x, in.pos.y, 0, 1);
+    // MARK: change document coordinate to renderView norm-coordinate
+	float x_t = info.renderViewFrameSize[0] * info.scrollViewZoomScale / 2.0;
+	float x = (in.pos.x / info.documentSize[0] * info.scrollViewContentSize[0] - info.scrollViewContentOffset[0] - x_t) / x_t;
+	float y_t = info.renderViewFrameSize[1] * info.scrollViewZoomScale / 2.0;
+	float y = -1.0 * (in.pos.y / info.documentSize[1] * info.scrollViewContentSize[1] - info.scrollViewContentOffset[1] - y_t) / y_t; // note minus
+	out.pos = float4(x, y, 0, 1);
 
+	out.color = colorArray[vid / 3].color; // three vertices own the same color
 	return out;
 }
 
-/// return the color of each pixel in the given triangle
-///
-/// `interpolated` is the returned result of `vertexShader` for each pixel
-///
-/// draw a smooth circle: https://stackoverflow.com/questions/59367916/ios-metal-jaggies-anit-aliasing
-fragment float4 fragmentShader(
-	VertexOut fragData[[stage_in]],
-	float2 pointCoord[[point_coord]])
-{
-     return fragData.color;
+fragment float4 fragmentShader(VertexOut fragData[[stage_in]]) {
+	return fragData.color;
 }

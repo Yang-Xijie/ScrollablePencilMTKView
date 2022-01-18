@@ -44,38 +44,25 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
         guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else { return }
         renderEncoder.setRenderPipelineState(pipelineState)
 
-        // MARK: set data
+        // MARK: use shape in document to create vertex data
 
-        let default_vertices = [Vertex(pos: [-1.0, 1.0]), Vertex(pos: [-1.0, -1.0]), Vertex(pos: [1.0, 1.0]),
-                                Vertex(pos: [1.0, -1.0]), Vertex(pos: [-1.0, -1.0]), Vertex(pos: [1.0, 1.0])]
-        let default_colors = [Color(color: [1.0, 0.0, 0.0, 1.0]),
-                              Color(color: [0.0, 1.0, 0.0, 1.0])]
+        let info = [TransfromConfig(documentSize: [document.size.width, document.size.height],
+                                    scrollViewContentSize: [Float(scrollView.contentSize.width), Float(scrollView.contentSize.height)],
+                                    scrollViewContentOffset: [Float(scrollView.contentOffset.x), Float(scrollView.contentOffset.y)],
+                                    renderViewFrameSize: [Float(renderView.frame.width), Float(renderView.frame.height)],
+                                    scrollViewZoomScale: Float(scrollView.zoomScale))]
+
         var vertices: [Vertex] = []
         var colors: [Color] = []
-//        vertices = default_vertices
-//        colors = default_colors
-
-        // MARK: use shape in document to create vertex data
 
         for shape in document.shapes {
             for vertex in shape.vertices {
-                let x_doc: Float = vertex.x
-                let x_docRatio: Float = x_doc / document.size.width
-                let x_scrollContent: Float = x_docRatio * Float(scrollView.contentSize.width)
-                let x_fenzi: Float = x_scrollContent - (Float(scrollView.contentOffset.x) + Float(renderView.frame.width * scrollView.zoomScale / 2.0))
-                let x_renderViewNorm: Float = x_fenzi / (Float(renderView.frame.width * scrollView.zoomScale) / 2.0)
-
-                let y_doc: Float = vertex.y
-                let y_docRatio: Float = y_doc / document.size.height
-                let y_scrollContent: Float = y_docRatio * Float(scrollView.contentSize.height)
-                let y_fenzi: Float = y_scrollContent - (Float(scrollView.contentOffset.y) + Float(renderView.frame.height * scrollView.zoomScale / 2.0))
-                let y_renderViewNorm: Float = -1.0 * y_fenzi / (Float(renderView.frame.height * scrollView.zoomScale) / 2.0) // notice: minus
-
-                vertices.append(Vertex(pos: [x_renderViewNorm, y_renderViewNorm]))
+                vertices.append(Vertex(pos: [vertex.x, vertex.y]))
             }
-
             colors.append(Color(color: shape.color.array))
         }
+
+        // MARK: buffer
 
         let vertexBuffer = device.makeBuffer(bytes: vertices,
                                              length: vertices.count * MemoryLayout<Vertex>.stride,
@@ -87,12 +74,16 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
                                             options: [])!
         renderEncoder.setVertexBuffer(colorBuffer, offset: 0, index: 1)
 
-        renderEncoder.drawPrimitives(type: .triangle,
-                                     vertexStart: 0,
-                                     vertexCount: vertices.count)
+        let infoBuffer = device.makeBuffer(bytes: info,
+                                           length: MemoryLayout<TransfromConfig>.stride,
+                                           options: [])!
+        renderEncoder.setVertexBuffer(infoBuffer, offset: 0, index: 2)
 
         // MARK: commit
 
+        renderEncoder.drawPrimitives(type: .triangle,
+                                     vertexStart: 0,
+                                     vertexCount: vertices.count)
         renderEncoder.endEncoding()
         commandBuffer.present(view.currentDrawable!)
         commandBuffer.commit()
