@@ -5,7 +5,7 @@ import Metal
 import MetalKit
 import XCLog
 
-class RednerViewDelegate: NSObject, MTKViewDelegate {
+class RenderViewDelegate: NSObject, MTKViewDelegate {
     let renderView: MTKView!
     let document: ExNoteDocument!
     let scrollView: UIScrollView!

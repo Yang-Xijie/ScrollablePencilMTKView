@@ -7,9 +7,15 @@ import XCLog
 class ViewController: UIViewController {
     var scrollView: UIScrollView!
     var scrollContentView: UIView!
-    var renderView: UIView!
+
+    var renderView: MTKView!
+    var renderViewDelegate: RenderViewDelegate!
+
+    var document: ExNoteDocument!
 
     override func loadView() {
+        document = testExNote
+
         // MARK: - view
 
         view = {
@@ -66,9 +72,36 @@ class ViewController: UIViewController {
         // MARK: - renderView
 
         renderView = {
-            let rv = UIView()
-            rv.backgroundColor = .init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
-//            rv.autoResizeDrawable = true
+            let rv = MTKView()
+
+            // MARK: device
+
+            guard let defaultDevice = MTLCreateSystemDefaultDevice() else {
+                XCLog(.fatal, "Metal is not supported on this device")
+                fatalError()
+            }
+
+            rv.device = defaultDevice
+
+            rv.preferredFramesPerSecond = 60
+            rv.isPaused = false
+            // mtkView.enableSetNeedsDisplay = true // TODO: when Apple Pencil or finger strokes, render
+            // mtkView.draw()
+
+            // MARK: delegate
+
+            guard let tempRenderer = RenderViewDelegate(renderView: rv,
+                                                        document: document,
+                                                        scrollView: scrollView) else {
+                XCLog(.fatal, "Renderer failed to initialize")
+                fatalError()
+            }
+
+            renderViewDelegate = tempRenderer // neccessary
+            rv.delegate = renderViewDelegate
+
+            rv.autoResizeDrawable = true
+
             return rv
         }()
 
