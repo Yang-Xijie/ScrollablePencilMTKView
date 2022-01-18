@@ -39,6 +39,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		48AA3025279665F400527BAD /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				48DECD8927965BE3005BF878 /* AppDelegate.swift */,
+				48DECD8B27965BE3005BF878 /* SceneDelegate.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
 		48DECD7D27965BE3005BF878 = {
 			isa = PBXGroup;
 			children = (
@@ -58,8 +67,7 @@
 		48DECD8827965BE3005BF878 /* tryScrollView */ = {
 			isa = PBXGroup;
 			children = (
-				48DECD8927965BE3005BF878 /* AppDelegate.swift */,
-				48DECD8B27965BE3005BF878 /* SceneDelegate.swift */,
+				48AA3025279665F400527BAD /* Scene */,
 				48DECD8D27965BE3005BF878 /* ViewController.swift */,
 				48AA302027965D3C00527BAD /* VC+ScrollDelegate.swift */,
 				48DECD9227965BE7005BF878 /* Assets.xcassets */,

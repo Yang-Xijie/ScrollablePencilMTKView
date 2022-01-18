@@ -113,5 +113,6 @@ class ViewController: UIViewController {
 
     func setRenderViewToScreen() {
         renderView.frame.size = .init(width: scrollView.frame.width * 1.0, height: scrollView.frame.height * 1.0)
+        self.renderView.frame.origin = scrollView.contentOffset
     }
 }

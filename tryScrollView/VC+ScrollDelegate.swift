@@ -29,12 +29,17 @@ extension ViewController: UIScrollViewDelegate {
               renderView.frame \(renderView.frame)
               """)
     }
-//
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        XCLog(.debug,
-//              """
-//              scrollView.contentOffset \(scrollView.contentOffset)
-//              scrollView.zoomScale \(scrollView.zoomScale)
-//              """)
-//    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        setRenderViewToScreen()
+
+        XCLog(.trace,
+              """
+              view.frame \(view!.frame)
+              scrollView.frame \(scrollView.frame)
+              scrollContentView.frame \(scrollContentView.frame)
+              scrollView.contentOffset \(scrollView.contentOffset)
+              renderView.frame \(renderView.frame)
+              """)
+    }
 }
