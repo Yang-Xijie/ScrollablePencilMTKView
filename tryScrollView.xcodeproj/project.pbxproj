@@ -28,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		481CC3B32796A52E008E5E51 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
+		481CC3B42796A6A6008E5E51 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		48AA302027965D3C00527BAD /* VC+ScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+ScrollDelegate.swift"; sourceTree = "<group>"; };
 		48AA3026279678C800527BAD /* RenderViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderViewDelegate.swift; sourceTree = "<group>"; };
 		48AA302A2796791B00527BAD /* testExNoteDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testExNoteDocument.swift; sourceTree = "<group>"; };
@@ -150,6 +152,8 @@
 				48DECD9227965BE7005BF878 /* Assets.xcassets */,
 				48DECD9427965BE7005BF878 /* LaunchScreen.storyboard */,
 				48DECD9727965BE7005BF878 /* Info.plist */,
+				481CC3B32796A52E008E5E51 /* TODO.md */,
+				481CC3B42796A6A6008E5E51 /* README.md */,
 			);
 			path = tryScrollView;
 			sourceTree = "<group>";
