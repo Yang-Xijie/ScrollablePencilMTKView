@@ -30,12 +30,12 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
             pipelineState_drawTrianglesWithSingleColor = try buildRenderPipelineWith(
                 device: device, metalKitView: renderView,
                 vertexFuncName: "vertexShader_drawTrianglesWithSingleColor",
-                fragmentFuncName: "fragmentShader")
+                fragmentFuncName: "fragmentShader_drawTrianglesWithSingleColor")
 
             pipelineState_drawTriangleStripWithSingleColor = try buildRenderPipelineWith(
                 device: device, metalKitView: renderView,
                 vertexFuncName: "vertexShader_drawTriangleStripWithSingleColor",
-                fragmentFuncName: "fragmentShader")
+                fragmentFuncName: "fragmentShader_drawTriangleStripWithSingleColor")
         } catch {
             XCLog(.fatal, "Unable to compile render pipeline state: \(error)")
             return nil
@@ -103,13 +103,16 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
                                                  length: vertices_triangleStrips.count * MemoryLayout<Vertex>.stride,
                                                  options: [])!
             renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
-            let colorBuffer = device.makeBuffer(bytes: &color_triangleStrips,
-                                                length: MemoryLayout.size(ofValue: color_triangleStrips),
-                                                options: [])!
-            renderEncoder.setVertexBuffer(colorBuffer, offset: 0, index: 1)
+//            let colorBuffer = device.makeBuffer(bytes: ,
+//                                                length: ),
+//                                                options: [])!
+//            renderEncoder.setVertexBuffer(colorBuffer, offset: 0, index: 1)
             renderEncoder.setVertexBytes(&transformConfig,
                                          length: MemoryLayout.size(ofValue: transformConfig),
-                                         index: 2) // transformConfig is smaller than 4KB
+                                         index: 1) // transformConfig is smaller than 4KB
+            renderEncoder.setFragmentBytes(&color_triangleStrips,
+                                           length: MemoryLayout.size(ofValue: color_triangleStrips),
+                                           index: 0)
 
             renderEncoder.drawPrimitives(type: .triangleStrip,
                                          vertexStart: 0,
