@@ -103,10 +103,6 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
                                                  length: vertices_triangleStrips.count * MemoryLayout<Vertex>.stride,
                                                  options: [])!
             renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
-//            let colorBuffer = device.makeBuffer(bytes: ,
-//                                                length: ),
-//                                                options: [])!
-//            renderEncoder.setVertexBuffer(colorBuffer, offset: 0, index: 1)
             renderEncoder.setVertexBytes(&transformConfig,
                                          length: MemoryLayout.size(ofValue: transformConfig),
                                          index: 1) // transformConfig is smaller than 4KB
@@ -126,7 +122,5 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
         commandBuffer.commit()
     }
 
-    // mtkView will automatically call this function
-    // whenever the size of the view changes (such as resizing the window).
     func mtkView(_: MTKView, drawableSizeWillChange _: CGSize) {}
 }

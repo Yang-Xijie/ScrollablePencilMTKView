@@ -4,7 +4,7 @@ using namespace metal;
 
 struct VertexOut {
 	float4 pos[[position]];
-	float4 color;  // use the color of the first vertex in fragment process // check `5.4 Sampling and Interpolation Attributes`
+	float4 color;  // add `[[flat]]` will add time consumption of `fragmentShader` 3 times...
 };
 
 /// draw triangles each with a single color
@@ -14,7 +14,7 @@ vertexShader_drawTrianglesWithSingleColor(
 	const device Color *colorArray[[buffer(1)]],
 	const device TransfromConfig *transformConfig[[buffer(2)]],
 	unsigned int vid[[vertex_id]],
-    unsigned int iid[[instance_id]]) {
+	unsigned int iid[[instance_id]]) {
 
 	// MARK: take data out from the buffer
 
@@ -38,5 +38,5 @@ vertexShader_drawTrianglesWithSingleColor(
 
 fragment float4
 fragmentShader_drawTrianglesWithSingleColor(VertexOut fragData[[stage_in]]) {
-    return fragData.color;
+	return fragData.color;
 }
