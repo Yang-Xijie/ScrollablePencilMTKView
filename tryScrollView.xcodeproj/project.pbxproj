@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		481A064727987E04008BEB4A /* MTLRenderPipelineState+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481A064627987E04008BEB4A /* MTLRenderPipelineState+.swift */; };
 		48AA302127965D3C00527BAD /* VC+ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA302027965D3C00527BAD /* VC+ScrollDelegate.swift */; };
 		48AA302427965DBA00527BAD /* XCLog in Frameworks */ = {isa = PBXBuildFile; productRef = 48AA302327965DBA00527BAD /* XCLog */; };
 		48AA3027279678C800527BAD /* RenderViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA3026279678C800527BAD /* RenderViewDelegate.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		481A064627987E04008BEB4A /* MTLRenderPipelineState+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTLRenderPipelineState+.swift"; sourceTree = "<group>"; };
 		481CC3B32796A52E008E5E51 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		481CC3B42796A6A6008E5E51 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		48AA302027965D3C00527BAD /* VC+ScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+ScrollDelegate.swift"; sourceTree = "<group>"; };
@@ -65,6 +67,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		481A064827987E75008BEB4A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				481A064627987E04008BEB4A /* MTLRenderPipelineState+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		48AA3025279665F400527BAD /* Scene */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				48AA3026279678C800527BAD /* RenderViewDelegate.swift */,
+				481A064827987E75008BEB4A /* Extensions */,
 				48AA303C2796794100527BAD /* ShaderDefinitions.h */,
 				48AA303E2796794100527BAD /* Shaders.metal */,
 			);
@@ -241,6 +252,7 @@
 				48AA3027279678C800527BAD /* RenderViewDelegate.swift in Sources */,
 				48AA30352796791B00527BAD /* ExColor.swift in Sources */,
 				48DECD8A27965BE3005BF878 /* AppDelegate.swift in Sources */,
+				481A064727987E04008BEB4A /* MTLRenderPipelineState+.swift in Sources */,
 				48AA304627968F8B00527BAD /* ExSize.swift in Sources */,
 				48DECD8C27965BE3005BF878 /* SceneDelegate.swift in Sources */,
 				48AA30432796794100527BAD /* Shaders.metal in Sources */,
