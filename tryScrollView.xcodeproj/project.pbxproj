@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		481A064727987E04008BEB4A /* MTLRenderPipelineState+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481A064627987E04008BEB4A /* MTLRenderPipelineState+.swift */; };
 		481A064A2798837A008BEB4A /* ExNoteDocument+DisplayConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481A06492798837A008BEB4A /* ExNoteDocument+DisplayConfig.swift */; };
+		481A064C279897D7008BEB4A /* Shader_triangleStrip.metal in Sources */ = {isa = PBXBuildFile; fileRef = 481A064B279897D7008BEB4A /* Shader_triangleStrip.metal */; };
 		48AA302127965D3C00527BAD /* VC+ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA302027965D3C00527BAD /* VC+ScrollDelegate.swift */; };
 		48AA302427965DBA00527BAD /* XCLog in Frameworks */ = {isa = PBXBuildFile; productRef = 48AA302327965DBA00527BAD /* XCLog */; };
 		48AA3027279678C800527BAD /* RenderViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA3026279678C800527BAD /* RenderViewDelegate.swift */; };
@@ -20,7 +21,7 @@
 		48AA30382796791B00527BAD /* ExPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA30302796791B00527BAD /* ExPage.swift */; };
 		48AA30392796791B00527BAD /* ExStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA30312796791B00527BAD /* ExStroke.swift */; };
 		48AA303A2796791B00527BAD /* ExNoteDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA30322796791B00527BAD /* ExNoteDocument.swift */; };
-		48AA30432796794100527BAD /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 48AA303E2796794100527BAD /* Shaders.metal */; };
+		48AA30432796794100527BAD /* Shader_triangles.metal in Sources */ = {isa = PBXBuildFile; fileRef = 48AA303E2796794100527BAD /* Shader_triangles.metal */; };
 		48AA304627968F8B00527BAD /* ExSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA304527968F8B00527BAD /* ExSize.swift */; };
 		48DECD8A27965BE3005BF878 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DECD8927965BE3005BF878 /* AppDelegate.swift */; };
 		48DECD8C27965BE3005BF878 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DECD8B27965BE3005BF878 /* SceneDelegate.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		481A064627987E04008BEB4A /* MTLRenderPipelineState+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTLRenderPipelineState+.swift"; sourceTree = "<group>"; };
 		481A06492798837A008BEB4A /* ExNoteDocument+DisplayConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExNoteDocument+DisplayConfig.swift"; sourceTree = "<group>"; };
+		481A064B279897D7008BEB4A /* Shader_triangleStrip.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shader_triangleStrip.metal; sourceTree = "<group>"; };
 		481CC3B32796A52E008E5E51 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		481CC3B42796A6A6008E5E51 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		48AA302027965D3C00527BAD /* VC+ScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+ScrollDelegate.swift"; sourceTree = "<group>"; };
@@ -45,7 +47,7 @@
 		48AA30312796791B00527BAD /* ExStroke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExStroke.swift; sourceTree = "<group>"; };
 		48AA30322796791B00527BAD /* ExNoteDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExNoteDocument.swift; sourceTree = "<group>"; };
 		48AA303C2796794100527BAD /* ShaderDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderDefinitions.h; sourceTree = "<group>"; };
-		48AA303E2796794100527BAD /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		48AA303E2796794100527BAD /* Shader_triangles.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shader_triangles.metal; sourceTree = "<group>"; };
 		48AA30412796794100527BAD /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		48AA304527968F8B00527BAD /* ExSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExSize.swift; sourceTree = "<group>"; };
 		48DECD8627965BE3005BF878 /* tryScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tryScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,7 +127,8 @@
 				48AA3026279678C800527BAD /* RenderViewDelegate.swift */,
 				481A064827987E75008BEB4A /* Extensions */,
 				48AA303C2796794100527BAD /* ShaderDefinitions.h */,
-				48AA303E2796794100527BAD /* Shaders.metal */,
+				48AA303E2796794100527BAD /* Shader_triangles.metal */,
+				481A064B279897D7008BEB4A /* Shader_triangleStrip.metal */,
 			);
 			path = Render;
 			sourceTree = "<group>";
@@ -258,11 +261,12 @@
 				481A064727987E04008BEB4A /* MTLRenderPipelineState+.swift in Sources */,
 				48AA304627968F8B00527BAD /* ExSize.swift in Sources */,
 				48DECD8C27965BE3005BF878 /* SceneDelegate.swift in Sources */,
-				48AA30432796794100527BAD /* Shaders.metal in Sources */,
+				48AA30432796794100527BAD /* Shader_triangles.metal in Sources */,
 				48AA30382796791B00527BAD /* ExPage.swift in Sources */,
 				48AA30362796791B00527BAD /* ExPoint.swift in Sources */,
 				48AA30392796791B00527BAD /* ExStroke.swift in Sources */,
 				48AA30332796791B00527BAD /* testExNoteDocument.swift in Sources */,
+				481A064C279897D7008BEB4A /* Shader_triangleStrip.metal in Sources */,
 				481A064A2798837A008BEB4A /* ExNoteDocument+DisplayConfig.swift in Sources */,
 				48AA303A2796791B00527BAD /* ExNoteDocument.swift in Sources */,
 			);
