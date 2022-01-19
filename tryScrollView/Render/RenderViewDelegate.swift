@@ -85,10 +85,16 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
                                      length: MemoryLayout.size(ofValue: transformConfig),
                                      index: 2) // transformConfig is smaller than 4KB
 
-        renderEncoder.drawPrimitives(type: .triangle,
-                                     vertexStart: 0,
-                                     vertexCount: 3,
-                                     instanceCount: colors_triangles.count)
+//        renderEncoder.drawPrimitives(type: .triangle,
+//                                     vertexStart: 0,
+//                                     vertexCount: 3,
+//                                     instanceCount: colors_triangles.count)
+
+        let indexBytes: [UInt32] = [0, 1, 2, 3, 4, 5]
+        let indexBuffer = device.makeBuffer(bytes: indexBytes,
+                                            length: 6 * MemoryLayout<UInt32>.stride,
+                                            options: [])!
+        renderEncoder.drawIndexedPrimitives(type: .triangle, indexCount: 3, indexType: .uint32, indexBuffer: indexBuffer, indexBufferOffset: 0, instanceCount: 2)
 
         // MARK: encoder - triangle strips with single color
 
