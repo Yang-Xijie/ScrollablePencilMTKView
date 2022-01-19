@@ -61,11 +61,11 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
             renderEncoder.setRenderPipelineState(pipelineState_drawTriangleStripWithSingleColor)
             renderEncoder.setTriangleFillMode(.fill)
 
-            let vertices_triangleStrips = shape.vertices
-            var color_triangleStrips = shape.color.array
+            let vertices_triangleStrips = shape.vertices.map(\.position2)
+            var color_triangleStrips = shape.color.rgba
 
             let vertexBuffer = device.makeBuffer(bytes: vertices_triangleStrips,
-                                                 length: vertices_triangleStrips.count * MemoryLayout<MetalPosition>.stride,
+                                                 length: vertices_triangleStrips.count * MemoryLayout<MetalPosition2>.stride,
                                                  options: [])!
             renderEncoder.setVertexBuffer(vertexBuffer,
                                           offset: 0,

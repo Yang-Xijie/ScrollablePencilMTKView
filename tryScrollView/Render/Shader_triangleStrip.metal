@@ -2,20 +2,16 @@
 #include "ShaderDefinitions.h"
 using namespace metal;
 
-struct VertexOut {
-	float4 pos[[position]];
-};
-
 /// draw triangleStrips with a single color
-vertex VertexOut
+vertex MetalPosition4
 vertexShader_drawTriangleStripWithSingleColor(
-	const device MetalPosition *vertexArray[[buffer(0)]],
+	const device MetalPosition2 *vertexArray[[buffer(0)]],
 	const device TransfromConfig *transformConfigArray[[buffer(1)]],
 	unsigned int vid[[vertex_id]]) {
 
-	// MARK: take data out from the buffer
+	// MARK: get data from buffers
 
-    MetalPosition in = vertexArray[vid];
+	MetalPosition2 in = vertexArray[vid];
 	TransfromConfig info = *transformConfigArray;
 
 	// MARK: change document coordinate to renderView norm-coordinate
@@ -27,9 +23,7 @@ vertexShader_drawTriangleStripWithSingleColor(
 
 	// MARK: return
 
-	VertexOut out;
-	out.pos = float4(x, y, 0, 1);
-	return out;
+	return MetalPosition4(x, y, 0, 1);
 }
 
 fragment MetalRGBA

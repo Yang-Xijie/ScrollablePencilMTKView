@@ -21,12 +21,14 @@ struct ExColor {
     static var black: ExColor {
         return .init(red: 0, green: 0, blue: 0, alpha: 1)
     }
-    
+
     static var seperator: ExColor {
         return .init(red: 0, green: 0, blue: 1, alpha: 1)
     }
 
-    var array: vector_float4 {
+    // MARK: render in Metal
+
+    var rgba: MetalRGBA {
         return [red, green, blue, alpha]
     }
 }

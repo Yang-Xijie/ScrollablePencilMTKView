@@ -5,7 +5,9 @@ struct ExPosition {
     var x: Float
     var y: Float
 
-    var vector: vector_float2 {
+    // MARK: render in Metal
+
+    var position2: MetalPosition2 {
         return [x, y]
     }
 }
