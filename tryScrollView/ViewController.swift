@@ -36,14 +36,14 @@ class ViewController: UIViewController {
             sv.isScrollEnabled = true // default: true
             sv.isUserInteractionEnabled = true // default: true
 
-            sv.bounces = true // add default animation
+            sv.bounces = false // add default animation
 
             // MARK: zoom
 
             sv.delegate = self
             sv.maximumZoomScale = 5.0
             sv.minimumZoomScale = 1.0 // no support for `zoomScale` smaller than 1.0
-            sv.bouncesZoom = true // bounce animation
+            sv.bouncesZoom = false // bounce animation
 
             return sv
         }()
@@ -80,14 +80,15 @@ class ViewController: UIViewController {
                 XCLog(.fatal, "Metal is not supported on this device")
                 fatalError()
             }
-
             rv.device = defaultDevice
 
-//            rv.preferredFramesPerSecond = 120
+            // MARK: render method
+            
+            // No need for `rv.preferredFramesPerSecond = 120`. It will be automatically decided by device.
             rv.isPaused = true
             rv.enableSetNeedsDisplay = false // when Apple Pencil or finger strokes, render
 
-            rv.autoResizeDrawable = false
+            rv.autoResizeDrawable = false // set renderView size and drawableSize by ourselves
 
             // MARK: delegate
 
