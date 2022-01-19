@@ -35,9 +35,10 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
     class func buildRenderPipelineWith(device: MTLDevice, metalKitView: MTKView) throws -> MTLRenderPipelineState {
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
 
-        let library = device.makeDefaultLibrary()
-        pipelineDescriptor.vertexFunction = library?.makeFunction(name: "vertexShader")
-        pipelineDescriptor.fragmentFunction = library?.makeFunction(name: "fragmentShader")
+        if let library = device.makeDefaultLibrary() {
+            pipelineDescriptor.vertexFunction = library.makeFunction(name: "vertexShader")
+            pipelineDescriptor.fragmentFunction = library.makeFunction(name: "fragmentShader")
+        }
 
         pipelineDescriptor.colorAttachments[0].pixelFormat = metalKitView.colorPixelFormat
 
@@ -52,6 +53,7 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
         guard let commandBuffer = commandQueue.makeCommandBuffer() else { return }
         guard let renderPassDescriptor = view.currentRenderPassDescriptor else { return }
         renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(1, 1, 1, 1) // white
+
         guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else { return }
         renderEncoder.setRenderPipelineState(pipelineState)
 
