@@ -1,6 +1,7 @@
 // 这个文件只描述数据的存储 与实际渲染无关
 
 import Foundation
+import XCLog
 
 /// Note文档
 ///
@@ -42,29 +43,28 @@ struct ExNoteDocument {
         return ExSize(width: pages.first!.size.width, height: pages.first!.size.height)
     }
 
+    // MARK: display config
+
     /// esay to render seperator
     ///
     /// seperator appear at the end of each page
     var pageSeperators: [ExShape] {
         guard pages.count >= 1 else {
+            XCLog(.error, "no page in document")
             return []
         }
 
-        let seperatorWidth: Float = 0.5
+        let seperatorWidth: Float = Self.pageSeperatorwidth
 
         var seperators: [ExShape] = []
         for i in 1 ... pages.count {
             let y_center = pageSize.height * Float(i)
-            seperators.append(ExShape(type: .triangle,
+            seperators.append(ExShape(type: .rectangle,
                                       color: .seperator,
                                       vertices: [.init(x: 0.0, y: y_center - seperatorWidth),
+                                                 .init(x: 0.0, y: y_center + seperatorWidth),
                                                  .init(x: pageSize.width, y: y_center - seperatorWidth),
-                                                 .init(x: 0.0, y: y_center)]))
-            seperators.append(ExShape(type: .triangle,
-                                      color: .seperator,
-                                      vertices: [.init(x: pageSize.width, y: y_center - seperatorWidth),
-                                                 .init(x: 0.0, y: y_center),
-                                                 .init(x: pageSize.width, y: y_center)]))
+                                                 .init(x: pageSize.width, y: y_center + seperatorWidth)]))
         }
         return seperators
     }
