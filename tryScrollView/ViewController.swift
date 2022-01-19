@@ -33,17 +33,17 @@ class ViewController: UIViewController {
 
             sv.contentInsetAdjustmentBehavior = .never // let mktView inset the bottom safe area
 
-            sv.isScrollEnabled = true // default is true
+            sv.isScrollEnabled = true // default: true
             sv.isUserInteractionEnabled = true // default: true
 
-            sv.bounces = false // add default animation
+            sv.bounces = true // add default animation
 
             // MARK: zoom
 
             sv.delegate = self
-            sv.maximumZoomScale = 4.0
-            sv.minimumZoomScale = 0.33
-            sv.bouncesZoom = false // diable bounce animation
+            sv.maximumZoomScale = 5.0
+            sv.minimumZoomScale = 1.0 // no support for `zoomScale` smaller than 1.0
+            sv.bouncesZoom = true // bounce animation
 
             return sv
         }()
@@ -83,10 +83,11 @@ class ViewController: UIViewController {
 
             rv.device = defaultDevice
 
-            rv.preferredFramesPerSecond = 120
-            rv.isPaused = false
-            // mtkView.enableSetNeedsDisplay = true // TODO: when Apple Pencil or finger strokes, render
-            // mtkView.draw()
+//            rv.preferredFramesPerSecond = 120
+            rv.isPaused = true
+            rv.enableSetNeedsDisplay = false // when Apple Pencil or finger strokes, render
+
+            rv.autoResizeDrawable = false
 
             // MARK: delegate
 
@@ -96,7 +97,6 @@ class ViewController: UIViewController {
                 XCLog(.fatal, "Renderer failed to initialize")
                 fatalError()
             }
-
             renderViewDelegate = tempRenderer // neccessary
             rv.delegate = renderViewDelegate
 
@@ -113,9 +113,9 @@ class ViewController: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
-        scrollView.zoomScale = 1.0 // reset zoomScale
-
         let doc_hwratio: Float = document.size.height / document.size.width
+
+        scrollView.zoomScale = 1.0 // reset zoomScale
 
         // change when pages.count changes
         scrollContentView.frame.size = .init(width: scrollView.frame.width,
@@ -144,31 +144,17 @@ class ViewController: UIViewController {
     }
 
     func setRenderViewToScreen() {
-        if scrollView.zoomScale < 1.0 {
-            renderView.autoResizeDrawable = false
+        let w = scrollView.frame.width * 1.0 / scrollView.zoomScale
+        let h = scrollView.frame.height * 1.0 / scrollView.zoomScale
+        renderView.frame.size = .init(width: w, height: h)
 
-            let w = min(scrollView.frame.width * 1.0 / scrollView.zoomScale,
-                        scrollContentView.frame.width * 1.0 / scrollView.zoomScale)
-            let h = min(scrollView.frame.height * 1.0 / scrollView.zoomScale,
-                        scrollContentView.frame.height * 1.0 / scrollView.zoomScale)
-            renderView.frame.size = .init(width: w, height: h)
-            
-            renderView.drawableSize = .init(width: renderView.frame.width * UIScreen.main.nativeScale * scrollView.zoomScale,
-                                            height: renderView.frame.height * UIScreen.main.nativeScale * scrollView.zoomScale)
-
-        } else {
-            renderView.autoResizeDrawable = false
-
-            let w = scrollView.frame.width * 1.0 / scrollView.zoomScale
-            let h = scrollView.frame.height * 1.0 / scrollView.zoomScale
-            renderView.frame.size = .init(width: w, height: h)
-
-            renderView.drawableSize = .init(width: scrollView.frame.width * UIScreen.main.nativeScale,
-                                            height: scrollView.frame.height * UIScreen.main.nativeScale)
-        }
+        renderView.drawableSize = .init(width: scrollView.frame.width * UIScreen.main.nativeScale,
+                                        height: scrollView.frame.height * UIScreen.main.nativeScale)
 
         let x = scrollView.contentOffset.x / scrollView.zoomScale
         let y = scrollView.contentOffset.y / scrollView.zoomScale
         renderView.frame.origin = .init(x: x, y: y)
+
+        renderView.draw() // render the frame
     }
 }

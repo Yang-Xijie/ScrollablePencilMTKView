@@ -54,7 +54,7 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
 
         var vertices: [Vertex] = []
         var colors: [Color] = []
-        
+
         for seperatorTriangle in document.pageSeperators {
             for vertex in seperatorTriangle.vertices {
                 vertices.append(Vertex(pos: [vertex.x, vertex.y]))
@@ -81,10 +81,10 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
                                             options: [])!
         renderEncoder.setVertexBuffer(colorBuffer, offset: 0, index: 1)
 
-        let infoBuffer = device.makeBuffer(bytes: info,
-                                           length: MemoryLayout<TransfromConfig>.stride,
-                                           options: [])!
-        renderEncoder.setVertexBuffer(infoBuffer, offset: 0, index: 2)
+        // info is smaller than 4KB
+        renderEncoder.setVertexBytes(info,
+                                     length: MemoryLayout<TransfromConfig>.stride,
+                                     index: 2)
 
         // MARK: commit
 
