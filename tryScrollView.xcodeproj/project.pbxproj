@@ -21,7 +21,6 @@
 		48AA30382796791B00527BAD /* ExPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA30302796791B00527BAD /* ExPage.swift */; };
 		48AA30392796791B00527BAD /* ExStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA30312796791B00527BAD /* ExStroke.swift */; };
 		48AA303A2796791B00527BAD /* ExNoteDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA30322796791B00527BAD /* ExNoteDocument.swift */; };
-		48AA30432796794100527BAD /* Shader_triangles.metal in Sources */ = {isa = PBXBuildFile; fileRef = 48AA303E2796794100527BAD /* Shader_triangles.metal */; };
 		48AA304627968F8B00527BAD /* ExSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA304527968F8B00527BAD /* ExSize.swift */; };
 		48DECD8A27965BE3005BF878 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DECD8927965BE3005BF878 /* AppDelegate.swift */; };
 		48DECD8C27965BE3005BF878 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DECD8B27965BE3005BF878 /* SceneDelegate.swift */; };
@@ -47,7 +46,6 @@
 		48AA30312796791B00527BAD /* ExStroke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExStroke.swift; sourceTree = "<group>"; };
 		48AA30322796791B00527BAD /* ExNoteDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExNoteDocument.swift; sourceTree = "<group>"; };
 		48AA303C2796794100527BAD /* ShaderDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderDefinitions.h; sourceTree = "<group>"; };
-		48AA303E2796794100527BAD /* Shader_triangles.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shader_triangles.metal; sourceTree = "<group>"; };
 		48AA30412796794100527BAD /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		48AA304527968F8B00527BAD /* ExSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExSize.swift; sourceTree = "<group>"; };
 		48DECD8627965BE3005BF878 /* tryScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tryScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,7 +125,6 @@
 				48AA3026279678C800527BAD /* RenderViewDelegate.swift */,
 				481A064827987E75008BEB4A /* Extensions */,
 				48AA303C2796794100527BAD /* ShaderDefinitions.h */,
-				48AA303E2796794100527BAD /* Shader_triangles.metal */,
 				481A064B279897D7008BEB4A /* Shader_triangleStrip.metal */,
 			);
 			path = Render;
@@ -261,7 +258,6 @@
 				481A064727987E04008BEB4A /* MTLRenderPipelineState+.swift in Sources */,
 				48AA304627968F8B00527BAD /* ExSize.swift in Sources */,
 				48DECD8C27965BE3005BF878 /* SceneDelegate.swift in Sources */,
-				48AA30432796794100527BAD /* Shader_triangles.metal in Sources */,
 				48AA30382796791B00527BAD /* ExPage.swift in Sources */,
 				48AA30362796791B00527BAD /* ExPoint.swift in Sources */,
 				48AA30392796791B00527BAD /* ExStroke.swift in Sources */,

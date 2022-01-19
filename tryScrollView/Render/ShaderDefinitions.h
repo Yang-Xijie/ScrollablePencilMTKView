@@ -5,13 +5,8 @@
 
 #include <simd/simd.h>
 
-struct Vertex {
-	vector_float2 pos;
-};
-
-struct Color {
-    vector_float4 color;
-};
+typedef vector_float2 MetalPosition;
+typedef vector_float4 MetalRGBA;
 
 struct TransfromConfig {
     vector_float2 documentSize;

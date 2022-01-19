@@ -14,7 +14,6 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
     let device: MTLDevice
     let commandQueue: MTLCommandQueue
 
-    let pipelineState_drawTrianglesWithSingleColor: MTLRenderPipelineState
     let pipelineState_drawTriangleStripWithSingleColor: MTLRenderPipelineState
 
     init?(renderView: MTKView, document: ExNoteDocument, scrollView: UIScrollView) {
@@ -27,11 +26,6 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
         commandQueue = device.makeCommandQueue()!
 
         do {
-            pipelineState_drawTrianglesWithSingleColor = try buildRenderPipelineWith(
-                device: device, metalKitView: renderView,
-                vertexFuncName: "vertexShader_drawTrianglesWithSingleColor",
-                fragmentFuncName: "fragmentShader_drawTrianglesWithSingleColor")
-
             pipelineState_drawTriangleStripWithSingleColor = try buildRenderPipelineWith(
                 device: device, metalKitView: renderView,
                 vertexFuncName: "vertexShader_drawTriangleStripWithSingleColor",
@@ -58,62 +52,29 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
                                               renderViewFrameSize: [Float(renderView.frame.width), Float(renderView.frame.height)],
                                               scrollViewZoomScale: Float(scrollView.zoomScale))
 
-        // MARK: - encoder: triangles with single color
+        // MARK: - encoder: triangle strips with single color
 
-        renderEncoder.setRenderPipelineState(pipelineState_drawTrianglesWithSingleColor)
-        renderEncoder.setTriangleFillMode(.fill)
+        var all_shapes = document.pageSeperators
+        all_shapes.append(contentsOf: document.shapes)
 
-        var vertices_triangles: [Vertex] = []
-        var colors_triangles: [Color] = []
-
-        for shape in document.shapes {
-            for vertex in shape.vertices {
-                vertices_triangles.append(Vertex(pos: [vertex.x, vertex.y]))
-            }
-            colors_triangles.append(Color(color: shape.color.array))
-        }
-
-        let vertexBuffer = device.makeBuffer(bytes: vertices_triangles,
-                                             length: vertices_triangles.count * MemoryLayout<Vertex>.stride,
-                                             options: [])!
-        renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
-        let colorBuffer = device.makeBuffer(bytes: colors_triangles,
-                                            length: colors_triangles.count * MemoryLayout<Color>.stride,
-                                            options: [])!
-        renderEncoder.setVertexBuffer(colorBuffer, offset: 0, index: 1)
-        renderEncoder.setVertexBytes(&transformConfig,
-                                     length: MemoryLayout.size(ofValue: transformConfig),
-                                     index: 2) // transformConfig is smaller than 4KB
-
-//        renderEncoder.drawPrimitives(type: .triangle,
-//                                     vertexStart: 0,
-//                                     vertexCount: 3,
-//                                     instanceCount: colors_triangles.count)
-
-        let indexBytes: [UInt32] = [0, 1, 2, 3, 4, 5]
-        let indexBuffer = device.makeBuffer(bytes: indexBytes,
-                                            length: 6 * MemoryLayout<UInt32>.stride,
-                                            options: [])!
-        renderEncoder.drawIndexedPrimitives(type: .triangle, indexCount: 3, indexType: .uint32, indexBuffer: indexBuffer, indexBufferOffset: 0, instanceCount: 2)
-
-        // MARK: encoder - triangle strips with single color
-
-        for seperatorRectangle in document.pageSeperators {
+        for shape in all_shapes {
             renderEncoder.setRenderPipelineState(pipelineState_drawTriangleStripWithSingleColor)
             renderEncoder.setTriangleFillMode(.fill)
 
-            let vertices_triangleStrips = seperatorRectangle.vertices
-            var color_triangleStrips = seperatorRectangle.color.array
+            let vertices_triangleStrips = shape.vertices
+            var color_triangleStrips = shape.color.array
 
             let vertexBuffer = device.makeBuffer(bytes: vertices_triangleStrips,
-                                                 length: vertices_triangleStrips.count * MemoryLayout<Vertex>.stride,
+                                                 length: vertices_triangleStrips.count * MemoryLayout<MetalPosition>.stride,
                                                  options: [])!
-            renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+            renderEncoder.setVertexBuffer(vertexBuffer,
+                                          offset: 0,
+                                          index: 0)
             renderEncoder.setVertexBytes(&transformConfig,
-                                         length: MemoryLayout.size(ofValue: transformConfig),
+                                         length: MemoryLayout<TransfromConfig>.stride,
                                          index: 1) // transformConfig is smaller than 4KB
             renderEncoder.setFragmentBytes(&color_triangleStrips,
-                                           length: MemoryLayout.size(ofValue: color_triangleStrips),
+                                           length: MemoryLayout<MetalRGBA>.stride,
                                            index: 0)
 
             renderEncoder.drawPrimitives(type: .triangleStrip,
