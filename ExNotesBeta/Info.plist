@@ -19,5 +19,7 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIStatusBarHidden~ipad</key>
+	<false/>
 </dict>
 </plist>

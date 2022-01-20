@@ -123,25 +123,25 @@ class ViewController: UIViewController {
                                              height: scrollView.frame.width * CGFloat(doc_hwratio))
         scrollView.contentSize = scrollContentView.frame.size
 
-//        XCLog(.trace,
-//              """
-//              scrollView.frame \(scrollView.frame)
-//              scrollContentView.frame \(scrollContentView.frame)
-//              renderView.frame \(renderView.frame)
-//              renderView.drawableSize \(renderView.drawableSize)
-//              scrollView.contentOffset \(scrollView.contentOffset)
-//              """)
+        XCLog(.trace,
+              """
+              scrollView.frame \(scrollView.frame)
+              scrollContentView.frame \(scrollContentView.frame)
+              renderView.frame \(renderView.frame)
+              renderView.drawableSize \(renderView.drawableSize)
+              scrollView.contentOffset \(scrollView.contentOffset)
+              """)
 
         setRenderViewToScreen()
 
-//        XCLog(.trace,
-//              """
-//              scrollView.frame \(scrollView.frame)
-//              scrollContentView.frame \(scrollContentView.frame)
-//              renderView.frame \(renderView.frame)
-//              renderView.drawableSize \(renderView.drawableSize)
-//              scrollView.contentOffset \(scrollView.contentOffset)
-//              """)
+        XCLog(.trace,
+              """
+              scrollView.frame \(scrollView.frame)
+              scrollContentView.frame \(scrollContentView.frame)
+              renderView.frame \(renderView.frame)
+              renderView.drawableSize \(renderView.drawableSize)
+              scrollView.contentOffset \(scrollView.contentOffset)
+              """)
     }
 
     func setRenderViewToScreen() {
