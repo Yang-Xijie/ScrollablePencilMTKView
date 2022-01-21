@@ -79,13 +79,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		48AA3025279665F400527BAD /* Scene */ = {
+		48AA3025279665F400527BAD /* App */ = {
 			isa = PBXGroup;
 			children = (
 				48DECD8927965BE3005BF878 /* AppDelegate.swift */,
 				48DECD8B27965BE3005BF878 /* SceneDelegate.swift */,
 			);
-			path = Scene;
+			path = App;
 			sourceTree = "<group>";
 		};
 		48AA30282796791B00527BAD /* Data */ = {
@@ -159,7 +159,7 @@
 		48DECD8827965BE3005BF878 /* ExNotesBeta */ = {
 			isa = PBXGroup;
 			children = (
-				48AA3025279665F400527BAD /* Scene */,
+				48AA3025279665F400527BAD /* App */,
 				489C9029279B3DEC000A4933 /* MainViewController.swift */,
 				48DECD8D27965BE3005BF878 /* ViewController.swift */,
 				48AA302027965D3C00527BAD /* VC+ScrollDelegate.swift */,
