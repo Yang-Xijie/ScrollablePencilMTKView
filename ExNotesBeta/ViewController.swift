@@ -1,10 +1,8 @@
-// ViewController.swift
-
 import MetalKit
 import UIKit
 import XCLog
 
-class ViewController: UIViewController {
+class ScrollablePencilMTKViewController: UIViewController {
     var scrollView: UIScrollView!
     var scrollContentView: UIView!
 
