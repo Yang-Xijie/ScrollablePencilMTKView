@@ -50,7 +50,7 @@
 		48AA303C2796794100527BAD /* ShaderDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderDefinitions.h; sourceTree = "<group>"; };
 		48AA30412796794100527BAD /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		48AA304527968F8B00527BAD /* ExSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExSize.swift; sourceTree = "<group>"; };
-		48DECD8627965BE3005BF878 /* ExNotesBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExNotesBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		48DECD8627965BE3005BF878 /* ScrollableMTKView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollableMTKView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48DECD8927965BE3005BF878 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48DECD8B27965BE3005BF878 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		48DECD8D27965BE3005BF878 /* ScrollableMTKViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableMTKViewController.swift; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 		48DECD7D27965BE3005BF878 = {
 			isa = PBXGroup;
 			children = (
-				48DECD8827965BE3005BF878 /* ExNotesBeta */,
+				48DECD8827965BE3005BF878 /* ScrollableMTKView */,
 				48DECD8727965BE3005BF878 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -151,12 +151,12 @@
 		48DECD8727965BE3005BF878 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				48DECD8627965BE3005BF878 /* ExNotesBeta.app */,
+				48DECD8627965BE3005BF878 /* ScrollableMTKView.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		48DECD8827965BE3005BF878 /* ExNotesBeta */ = {
+		48DECD8827965BE3005BF878 /* ScrollableMTKView */ = {
 			isa = PBXGroup;
 			children = (
 				48AA3025279665F400527BAD /* App */,
@@ -172,15 +172,15 @@
 				481CC3B32796A52E008E5E51 /* TODO.md */,
 				481CC3B42796A6A6008E5E51 /* README.md */,
 			);
-			path = ExNotesBeta;
+			path = ScrollableMTKView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		48DECD8527965BE3005BF878 /* ExNotesBeta */ = {
+		48DECD8527965BE3005BF878 /* ScrollableMTKView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 48DECD9A27965BE7005BF878 /* Build configuration list for PBXNativeTarget "ExNotesBeta" */;
+			buildConfigurationList = 48DECD9A27965BE7005BF878 /* Build configuration list for PBXNativeTarget "ScrollableMTKView" */;
 			buildPhases = (
 				48DECD8227965BE3005BF878 /* Sources */,
 				48DECD8327965BE3005BF878 /* Frameworks */,
@@ -190,12 +190,12 @@
 			);
 			dependencies = (
 			);
-			name = ExNotesBeta;
+			name = ScrollableMTKView;
 			packageProductDependencies = (
 				48AA302327965DBA00527BAD /* XCLog */,
 			);
 			productName = tryScrollView;
-			productReference = 48DECD8627965BE3005BF878 /* ExNotesBeta.app */;
+			productReference = 48DECD8627965BE3005BF878 /* ScrollableMTKView.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -213,7 +213,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 48DECD8127965BE3005BF878 /* Build configuration list for PBXProject "ExNotesBeta" */;
+			buildConfigurationList = 48DECD8127965BE3005BF878 /* Build configuration list for PBXProject "ScrollableMTKView" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -229,7 +229,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				48DECD8527965BE3005BF878 /* ExNotesBeta */,
+				48DECD8527965BE3005BF878 /* ScrollableMTKView */,
 			);
 		};
 /* End PBXProject section */
@@ -415,7 +415,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C4W6UUH267;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ExNotesBeta/Info.plist;
+				INFOPLIST_FILE = "$(PROJECT_NAME)/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -428,6 +428,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yangxijie.scrollableMTKView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_NAME)/Swift/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -442,7 +443,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C4W6UUH267;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ExNotesBeta/Info.plist;
+				INFOPLIST_FILE = "$(PROJECT_NAME)/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -455,6 +456,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yangxijie.scrollableMTKView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_NAME)/Swift/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -463,7 +465,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		48DECD8127965BE3005BF878 /* Build configuration list for PBXProject "ExNotesBeta" */ = {
+		48DECD8127965BE3005BF878 /* Build configuration list for PBXProject "ScrollableMTKView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				48DECD9827965BE7005BF878 /* Debug */,
@@ -472,7 +474,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		48DECD9A27965BE7005BF878 /* Build configuration list for PBXNativeTarget "ExNotesBeta" */ = {
+		48DECD9A27965BE7005BF878 /* Build configuration list for PBXNativeTarget "ScrollableMTKView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				48DECD9B27965BE7005BF878 /* Debug */,
