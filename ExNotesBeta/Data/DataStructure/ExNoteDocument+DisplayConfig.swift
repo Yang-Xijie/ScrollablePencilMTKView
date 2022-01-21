@@ -1,5 +1,3 @@
-// ExNoteDocument+DisplayConfig.swift
-
 import Foundation
 
 extension ExNoteDocument {

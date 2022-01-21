@@ -18,7 +18,7 @@ class ScrollableMTKViewController: UIViewController {
 
         view = {
             let v = UIView()
-            v.backgroundColor = .cyan
+            v.backgroundColor = .white
             return v
         }()
 
@@ -54,7 +54,7 @@ class ScrollableMTKViewController: UIViewController {
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
 
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
         ])
 
         // MARK: - scrollContentView
