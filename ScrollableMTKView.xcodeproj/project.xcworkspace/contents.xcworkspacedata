@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/yangxijie/Desktop/ExDev/Xcode/ScrollablePencilMTKView/ScrollableMTKView.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
