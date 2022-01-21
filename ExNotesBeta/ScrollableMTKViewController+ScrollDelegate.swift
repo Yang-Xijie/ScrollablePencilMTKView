@@ -1,11 +1,9 @@
-// VC+ScrollDelegate.swift
-
 import Foundation
 import UIKit
 
 import XCLog
 
-extension ScrollablePencilMTKViewController: UIScrollViewDelegate {
+extension ScrollableMTKViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return self.scrollContentView
     }

@@ -2,7 +2,7 @@ import MetalKit
 import UIKit
 import XCLog
 
-class ScrollablePencilMTKViewController: UIViewController {
+class ScrollableMTKViewController: UIViewController {
     var scrollView: UIScrollView!
     var scrollContentView: UIView!
 

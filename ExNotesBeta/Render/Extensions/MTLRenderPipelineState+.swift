@@ -2,9 +2,10 @@ import Foundation
 import Metal
 import MetalKit
 
-func buildRenderPipelineWith(
-    device: MTLDevice, metalKitView: MTKView,
-    vertexFuncName: String, fragmentFuncName: String)
+func buildRenderPipelineWith(device: MTLDevice,
+                             metalKitView: MTKView,
+                             vertexFuncName: String,
+                             fragmentFuncName: String)
     throws -> MTLRenderPipelineState {
     let pipelineDescriptor = MTLRenderPipelineDescriptor()
     if let library = device.makeDefaultLibrary() {

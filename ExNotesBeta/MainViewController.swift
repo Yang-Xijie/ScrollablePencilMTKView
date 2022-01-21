@@ -2,7 +2,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     var openDocButton: UIButton!
-    var scrollablePencilMTKViewController: ScrollablePencilMTKViewController!
+    var scrollablePencilMTKViewController: ScrollableMTKViewController!
 
     override func loadView() {
         view = {
@@ -35,7 +35,7 @@ class MainViewController: UIViewController {
     }
 
     @objc func openTestDocument() {
-        scrollablePencilMTKViewController = ScrollablePencilMTKViewController()
+        scrollablePencilMTKViewController = ScrollableMTKViewController()
         scrollablePencilMTKViewController.modalPresentationStyle = .fullScreen
         present(scrollablePencilMTKViewController, animated: true) {}
     }
