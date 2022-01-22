@@ -2,19 +2,30 @@ import MetalKit
 import UIKit
 import XCLog
 
-class ScrollableMTKViewController: UIViewController {
+class DocumentVC: UIViewController {
+    /// scrollView is the front layer to receive user's actions
     var scrollView: UIScrollView!
-    var scrollContentView: UIView!
+    /// fullDocumentView is the contentView of the scrollView, which show the document thumbnail page by page
+    ///
+    /// The height of MTKView should be no more than 2^14. So use MTKView to show the full document is not a feasible choice.
+    var fullDocumentView: UIView!
 
+    /// renderView renders the on-screen document
+    ///
+    /// the drawableSize is the `UIScreen.main.nativeScale * renderView.on-screen-size`
     var renderView: MTKView!
+    /// draw on-screen triangleStrips in renderView
     var renderViewDelegate: RenderViewDelegate!
 
+    /// the opened document
     var document: ExNoteDocument!
 
     override func loadView() {
+        // MARK: document
+
         document = testExNote
 
-        // MARK: - view
+        // MARK: view
 
         view = {
             let v = UIView()
@@ -22,32 +33,28 @@ class ScrollableMTKViewController: UIViewController {
             return v
         }()
 
-        // MARK: - scrollView
+        // MARK: scrollView
 
         scrollView = {
             let sv = UIScrollView()
 
-            sv.backgroundColor = .yellow // the blank when scroll to edges
+            sv.backgroundColor = .systemYellow // the blank when scroll to edges; cannot see it if `scrollView.zoomScale > 1`
 
-            sv.contentInsetAdjustmentBehavior = .never // let mktView inset the bottom safe area
+            sv.contentInsetAdjustmentBehavior = .never // QUESTION: let mktView inset the bottom safe area
 
             sv.isScrollEnabled = true // default: true
             sv.isUserInteractionEnabled = true // default: true
 
-            sv.bounces = false // add default animation
+            sv.bounces = false // turn off bounce animation (margins)
 
-            // MARK: zoom
-
-            sv.delegate = self
             sv.maximumZoomScale = 5.0
             sv.minimumZoomScale = 1.0 // no support for `zoomScale` smaller than 1.0
-            sv.bouncesZoom = false // bounce animation
+            sv.bouncesZoom = false // turn off bounce animation (zoom)
 
+            sv.delegate = self // zoom and scroll
             return sv
         }()
-
         view.addSubview(scrollView)
-
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
@@ -59,13 +66,12 @@ class ScrollableMTKViewController: UIViewController {
 
         // MARK: - scrollContentView
 
-        scrollContentView = {
+        fullDocumentView = {
             let scv = UIView()
             scv.backgroundColor = .orange
             return scv
         }()
-
-        scrollView.addSubview(scrollContentView)
+        scrollView.addSubview(fullDocumentView)
 
         // MARK: - renderView
 
@@ -81,12 +87,10 @@ class ScrollableMTKViewController: UIViewController {
             rv.device = defaultDevice
 
             // MARK: render method
-            
-            // No need for `rv.preferredFramesPerSecond = 120`. It will be automatically decided by device.
-            rv.isPaused = true
-            rv.enableSetNeedsDisplay = false // when Apple Pencil or finger strokes, render
 
-            rv.autoResizeDrawable = false // set renderView size and drawableSize by ourselves
+            rv.isPaused = true // No need for `rv.preferredFramesPerSecond = 120`. It will be automatically decided by device.
+            rv.enableSetNeedsDisplay = false // when Apple Pencil or finger strokes, call `draw()` to render a drawable
+            rv.autoResizeDrawable = false // set `renderView.drawableSize` by ourselves
 
             // MARK: delegate
 
@@ -101,10 +105,9 @@ class ScrollableMTKViewController: UIViewController {
 
             return rv
         }()
-
         // not `view.addSubView()` because the scrollView should be on the top to recieve user's gesture
         // notice: renderView.frame is relative to scrollContentView
-        scrollContentView.addSubview(renderView)
+        fullDocumentView.addSubview(renderView)
     }
 
     override func viewDidLoad() {
@@ -116,15 +119,15 @@ class ScrollableMTKViewController: UIViewController {
 
         scrollView.zoomScale = 1.0 // reset zoomScale
 
-        // change when pages.count changes
-        scrollContentView.frame.size = .init(width: scrollView.frame.width,
-                                             height: scrollView.frame.width * CGFloat(doc_hwratio))
-        scrollView.contentSize = scrollContentView.frame.size
+        // TODO: should change if pages.count changes
+        fullDocumentView.frame.size = .init(width: scrollView.frame.width,
+                                            height: scrollView.frame.width * CGFloat(doc_hwratio))
+        scrollView.contentSize = fullDocumentView.frame.size
 
         XCLog(.trace,
               """
               scrollView.frame \(scrollView.frame)
-              scrollContentView.frame \(scrollContentView.frame)
+              scrollContentView.frame \(fullDocumentView.frame)
               renderView.frame \(renderView.frame)
               renderView.drawableSize \(renderView.drawableSize)
               scrollView.contentOffset \(scrollView.contentOffset)
@@ -135,7 +138,7 @@ class ScrollableMTKViewController: UIViewController {
         XCLog(.trace,
               """
               scrollView.frame \(scrollView.frame)
-              scrollContentView.frame \(scrollContentView.frame)
+              scrollContentView.frame \(fullDocumentView.frame)
               renderView.frame \(renderView.frame)
               renderView.drawableSize \(renderView.drawableSize)
               scrollView.contentOffset \(scrollView.contentOffset)

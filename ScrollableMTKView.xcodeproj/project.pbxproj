@@ -10,8 +10,8 @@
 		481A064727987E04008BEB4A /* MTLRenderPipelineState+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481A064627987E04008BEB4A /* MTLRenderPipelineState+.swift */; };
 		481A064A2798837A008BEB4A /* ExNoteDocument+DisplayConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481A06492798837A008BEB4A /* ExNoteDocument+DisplayConfig.swift */; };
 		481A064C279897D7008BEB4A /* Shader_triangleStrip.metal in Sources */ = {isa = PBXBuildFile; fileRef = 481A064B279897D7008BEB4A /* Shader_triangleStrip.metal */; };
-		489C902A279B3DEC000A4933 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489C9029279B3DEC000A4933 /* MainViewController.swift */; };
-		48AA302127965D3C00527BAD /* ScrollableMTKViewController+ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA302027965D3C00527BAD /* ScrollableMTKViewController+ScrollDelegate.swift */; };
+		489C902A279B3DEC000A4933 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489C9029279B3DEC000A4933 /* MainVC.swift */; };
+		48AA302127965D3C00527BAD /* DocumentVC+Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA302027965D3C00527BAD /* DocumentVC+Scrollable.swift */; };
 		48AA302427965DBA00527BAD /* XCLog in Frameworks */ = {isa = PBXBuildFile; productRef = 48AA302327965DBA00527BAD /* XCLog */; };
 		48AA3027279678C800527BAD /* RenderViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA3026279678C800527BAD /* RenderViewDelegate.swift */; };
 		48AA30332796791B00527BAD /* testExNoteDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA302A2796791B00527BAD /* testExNoteDocument.swift */; };
@@ -25,7 +25,7 @@
 		48AA304627968F8B00527BAD /* ExSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AA304527968F8B00527BAD /* ExSize.swift */; };
 		48DECD8A27965BE3005BF878 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DECD8927965BE3005BF878 /* AppDelegate.swift */; };
 		48DECD8C27965BE3005BF878 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DECD8B27965BE3005BF878 /* SceneDelegate.swift */; };
-		48DECD8E27965BE3005BF878 /* ScrollableMTKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DECD8D27965BE3005BF878 /* ScrollableMTKViewController.swift */; };
+		48DECD8E27965BE3005BF878 /* DocumentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DECD8D27965BE3005BF878 /* DocumentVC.swift */; };
 		48DECD9327965BE7005BF878 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48DECD9227965BE7005BF878 /* Assets.xcassets */; };
 		48DECD9627965BE7005BF878 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48DECD9427965BE7005BF878 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -36,8 +36,8 @@
 		481A064B279897D7008BEB4A /* Shader_triangleStrip.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shader_triangleStrip.metal; sourceTree = "<group>"; };
 		481CC3B32796A52E008E5E51 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		481CC3B42796A6A6008E5E51 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		489C9029279B3DEC000A4933 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		48AA302027965D3C00527BAD /* ScrollableMTKViewController+ScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScrollableMTKViewController+ScrollDelegate.swift"; sourceTree = "<group>"; };
+		489C9029279B3DEC000A4933 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		48AA302027965D3C00527BAD /* DocumentVC+Scrollable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentVC+Scrollable.swift"; sourceTree = "<group>"; };
 		48AA3026279678C800527BAD /* RenderViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderViewDelegate.swift; sourceTree = "<group>"; };
 		48AA302A2796791B00527BAD /* testExNoteDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testExNoteDocument.swift; sourceTree = "<group>"; };
 		48AA302C2796791B00527BAD /* ExPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExPosition.swift; sourceTree = "<group>"; };
@@ -53,7 +53,7 @@
 		48DECD8627965BE3005BF878 /* ScrollableMTKView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollableMTKView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48DECD8927965BE3005BF878 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48DECD8B27965BE3005BF878 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		48DECD8D27965BE3005BF878 /* ScrollableMTKViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableMTKViewController.swift; sourceTree = "<group>"; };
+		48DECD8D27965BE3005BF878 /* DocumentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentVC.swift; sourceTree = "<group>"; };
 		48DECD9227965BE7005BF878 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48DECD9527965BE7005BF878 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		48DECD9727965BE7005BF878 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -160,9 +160,9 @@
 			isa = PBXGroup;
 			children = (
 				48AA3025279665F400527BAD /* App */,
-				489C9029279B3DEC000A4933 /* MainViewController.swift */,
-				48DECD8D27965BE3005BF878 /* ScrollableMTKViewController.swift */,
-				48AA302027965D3C00527BAD /* ScrollableMTKViewController+ScrollDelegate.swift */,
+				489C9029279B3DEC000A4933 /* MainVC.swift */,
+				48DECD8D27965BE3005BF878 /* DocumentVC.swift */,
+				48AA302027965D3C00527BAD /* DocumentVC+Scrollable.swift */,
 				48AA30282796791B00527BAD /* Data */,
 				48AA303B2796794100527BAD /* Render */,
 				48AA30402796794100527BAD /* Swift */,
@@ -252,9 +252,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				48AA30342796791B00527BAD /* ExPosition.swift in Sources */,
-				48AA302127965D3C00527BAD /* ScrollableMTKViewController+ScrollDelegate.swift in Sources */,
+				48AA302127965D3C00527BAD /* DocumentVC+Scrollable.swift in Sources */,
 				48AA30372796791B00527BAD /* ExShape.swift in Sources */,
-				48DECD8E27965BE3005BF878 /* ScrollableMTKViewController.swift in Sources */,
+				48DECD8E27965BE3005BF878 /* DocumentVC.swift in Sources */,
 				48AA3027279678C800527BAD /* RenderViewDelegate.swift in Sources */,
 				48AA30352796791B00527BAD /* ExColor.swift in Sources */,
 				48DECD8A27965BE3005BF878 /* AppDelegate.swift in Sources */,
@@ -266,7 +266,7 @@
 				48AA30392796791B00527BAD /* ExStroke.swift in Sources */,
 				48AA30332796791B00527BAD /* testExNoteDocument.swift in Sources */,
 				481A064C279897D7008BEB4A /* Shader_triangleStrip.metal in Sources */,
-				489C902A279B3DEC000A4933 /* MainViewController.swift in Sources */,
+				489C902A279B3DEC000A4933 /* MainVC.swift in Sources */,
 				481A064A2798837A008BEB4A /* ExNoteDocument+DisplayConfig.swift in Sources */,
 				48AA303A2796791B00527BAD /* ExNoteDocument.swift in Sources */,
 			);
