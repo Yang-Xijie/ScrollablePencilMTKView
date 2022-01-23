@@ -2,12 +2,18 @@
 #include "ShaderDefinitions.h"
 using namespace metal;
 
+struct VertexOut {
+	MetalPosition4 position[[position]];
+	unsigned int instanceID;
+};
+
 /// draw triangleStrips with a single color
-vertex MetalPosition4
+vertex VertexOut
 vertexShader_drawTriangleStripWithSingleColor(
 	const device MetalPosition2 *vertexArray[[buffer(0)]],
 	const device TransfromConfig *transformConfigArray[[buffer(1)]],
-	unsigned int vid[[vertex_id]]) {
+	unsigned int vid[[vertex_id]],
+	unsigned int iid[[instance_id]]) {
 
 	// MARK: get data from buffers
 
@@ -23,11 +29,16 @@ vertexShader_drawTriangleStripWithSingleColor(
 
 	// MARK: return
 
-	return MetalPosition4(x, y, 0, 1);
+	VertexOut out = VertexOut();
+	out.position = MetalPosition4(x, y, 0, 1);
+	out.instanceID = iid;
+	return out;
 }
 
+// check `5.2.3.4 Fragment Function Input Attributes`
 fragment MetalRGBA
 fragmentShader_drawTriangleStripWithSingleColor(
-	const device MetalRGBA *color[[buffer(0)]]) {
-	return *color;
+	const device MetalRGBA *color[[buffer(0)]],
+    unsigned int pid[[primitive_id]]) {
+    return color[pid];
 }

@@ -53,7 +53,6 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
                                               renderViewFrameSize: [Float(renderView.frame.width), Float(renderView.frame.height)],
                                               scrollViewZoomScale: Float(scrollView.zoomScale))
 
-        
         var all_shapes = document.pageSeperators
         all_shapes.append(contentsOf: document.shapes)
 
@@ -66,14 +65,17 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
 
         var instanceIndexStart: UInt32 = 0
 
+        // one shape is an instance
         for shape in all_shapes {
             vertices_triangleStrips.append(contentsOf: shape.vertices.map(\.position2))
             color_triangleStrips.append(shape.color.rgba)
 
             indexBytes.append(contentsOf: instanceIndexStart ..< (instanceIndexStart + UInt32(shape.vertices.count)))
             instanceIndexStart += UInt32(shape.vertices.count)
-            indexBytes.append(UInt32.max)
+            indexBytes.append(UInt32.max) // end an instance
         }
+        
+        print(indexBytes)
 
         // MARK: create buffer and set draw primitive
 
@@ -85,6 +87,9 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
         let indexBuffer = device.makeBuffer(bytes: indexBytes,
                                             length: indexBytes.count * MemoryLayout<UInt32>.stride,
                                             options: [])!
+        let colorBuffer = device.makeBuffer(bytes: color_triangleStrips,
+                                            length: color_triangleStrips.count * MemoryLayout<MetalRGBA>.stride,
+                                            options: [])!
 
         renderEncoder.setVertexBuffer(vertexBuffer,
                                       offset: 0,
@@ -92,16 +97,17 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
         renderEncoder.setVertexBytes(&transformConfig,
                                      length: MemoryLayout<TransfromConfig>.stride,
                                      index: 1) // transformConfig is smaller than 4KB
-        renderEncoder.setFragmentBytes(&color_triangleStrips,
-                                       length: MemoryLayout<MetalRGBA>.stride,
-                                       index: 0)
+        renderEncoder.setFragmentBuffer(colorBuffer,
+                                        offset: 0,
+                                        index: 0)
+        
 
         renderEncoder.drawIndexedPrimitives(type: .triangleStrip,
                                             indexCount: indexBytes.count,
                                             indexType: .uint32,
                                             indexBuffer: indexBuffer,
-                                            indexBufferOffset: 0,
-                                            instanceCount: instanceCount)
+                                            indexBufferOffset: 0) // only one instance
+                                            
 
         // MARK: commit
 
