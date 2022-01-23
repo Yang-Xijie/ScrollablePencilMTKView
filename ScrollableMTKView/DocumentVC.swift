@@ -88,7 +88,8 @@ class DocumentVC: UIViewController {
 
             // MARK: render method
 
-            rv.isPaused = true // No need for `rv.preferredFramesPerSecond = 120`. It will be automatically decided by device.
+//            rv.preferredFramesPerSecond = 120
+            rv.isPaused = false // No need for `rv.preferredFramesPerSecond = 120`. It will be automatically decided by device.
             rv.enableSetNeedsDisplay = false // when Apple Pencil or finger strokes, call `draw()` to render a drawable
             rv.autoResizeDrawable = false // set `renderView.drawableSize` by ourselves
 
@@ -112,6 +113,9 @@ class DocumentVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        prepareRenderData()
+        // one shape is an instance
     }
 
     override func viewDidLayoutSubviews() {
@@ -133,6 +137,7 @@ class DocumentVC: UIViewController {
               scrollView.contentOffset \(scrollView.contentOffset)
               """)
 
+        prepareRenderData()
         setRenderViewToScreen()
 
         XCLog(.trace,
@@ -158,5 +163,25 @@ class DocumentVC: UIViewController {
         renderView.frame.origin = .init(x: x, y: y)
 
         renderView.draw() // render the frame
+    }
+
+    func prepareRenderData() {
+        for shape in RenderData.shared.all_shapes {
+            RenderData.shared.vertices_triangleStrips.append(contentsOf: shape.vertices.map {
+                VertexIn(position: $0.position2,
+                         alpha: shape.color.alpha,
+                         r: shape.color.red,
+                         g: shape.color.green,
+                         b: shape.color.blue)
+            })
+            RenderData.shared.shapeNumer += 1
+
+            RenderData.shared.indexBytes.append(contentsOf: RenderData.shared.instanceIndexStart ..< (RenderData.shared.instanceIndexStart + UInt32(shape.vertices.count)))
+            RenderData.shared.instanceIndexStart += UInt32(shape.vertices.count)
+            RenderData.shared.indexBytes.append(UInt32.max) // end an instance
+        }
+
+        RenderData.shared.all_shapes.append(contentsOf: document.pageSeperators)
+        RenderData.shared.all_shapes.append(contentsOf: document.shapes)
     }
 }

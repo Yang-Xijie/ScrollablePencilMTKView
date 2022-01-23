@@ -34,6 +34,7 @@
 		481A064627987E04008BEB4A /* MTLRenderPipelineState+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTLRenderPipelineState+.swift"; sourceTree = "<group>"; };
 		481A06492798837A008BEB4A /* ExNoteDocument+DisplayConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExNoteDocument+DisplayConfig.swift"; sourceTree = "<group>"; };
 		481A064B279897D7008BEB4A /* Shader_triangleStrip.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shader_triangleStrip.metal; sourceTree = "<group>"; };
+		481A7854279D76B900D88A83 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		481CC3B32796A52E008E5E51 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		481CC3B42796A6A6008E5E51 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		489C9029279B3DEC000A4933 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -143,6 +144,7 @@
 		48DECD7D27965BE3005BF878 = {
 			isa = PBXGroup;
 			children = (
+				481A7854279D76B900D88A83 /* README.md */,
 				48DECD8827965BE3005BF878 /* ScrollableMTKView */,
 				48DECD8727965BE3005BF878 /* Products */,
 			);

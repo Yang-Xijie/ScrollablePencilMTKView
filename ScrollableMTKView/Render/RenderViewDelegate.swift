@@ -3,6 +3,19 @@ import Metal
 import MetalKit
 import XCLog
 
+class RenderData {
+    static let shared = RenderData()
+
+    var all_shapes: [ExShape] = []
+
+    var vertices_triangleStrips: [VertexIn] = []
+
+    var indexBytes: [UInt32] = []
+
+    var instanceIndexStart: UInt32 = 0
+    var shapeNumer = 0
+}
+
 class RenderViewDelegate: NSObject, MTKViewDelegate {
     let renderView: MTKView!
 
@@ -27,7 +40,8 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
             pipelineState_drawTriangleStripWithSingleColor = try buildRenderPipelineWith(
                 device: device, metalKitView: renderView,
                 vertexFuncName: "vertexShader_drawTriangleStripWithSingleColor",
-                fragmentFuncName: "fragmentShader_drawTriangleStripWithSingleColor")
+                fragmentFuncName: "fragmentShader_drawTriangleStripWithSingleColor"
+            )
         } catch {
             XCLog(.fatal, "Unable to compile render pipeline state: \(error)")
             return nil
@@ -53,42 +67,15 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
                                               renderViewFrameSize: [Float(renderView.frame.width), Float(renderView.frame.height)],
                                               scrollViewZoomScale: Float(scrollView.zoomScale))
 
-        var all_shapes:[ExShape] = []
-        all_shapes.append(contentsOf: document.pageSeperators)
-        all_shapes.append(contentsOf: document.shapes)
-
-        var vertices_triangleStrips: [VertexIn] = []
-
-        var indexBytes: [UInt32] = []
-
-        var instanceIndexStart: UInt32 = 0
-        var shapeNumer = 0
-
-        // one shape is an instance
-        for shape in all_shapes {
-            vertices_triangleStrips.append(contentsOf: shape.vertices.map {
-                VertexIn(position: $0.position2,
-                         alpha: shape.color.alpha,
-                         r: shape.color.red,
-                         g: shape.color.green,
-                         b: shape.color.blue)
-            })
-            shapeNumer += 1
-
-            indexBytes.append(contentsOf: instanceIndexStart ..< (instanceIndexStart + UInt32(shape.vertices.count)))
-            instanceIndexStart += UInt32(shape.vertices.count)
-            indexBytes.append(UInt32.max) // end an instance
-        }
-
         // MARK: create buffer and set draw primitive
 
         renderEncoder.setRenderPipelineState(pipelineState_drawTriangleStripWithSingleColor)
         renderEncoder.setTriangleFillMode(.fill)
-        let vertexBuffer = device.makeBuffer(bytes: vertices_triangleStrips,
-                                             length: vertices_triangleStrips.count * MemoryLayout<VertexIn>.stride,
+        let vertexBuffer = device.makeBuffer(bytes: RenderData.shared.vertices_triangleStrips,
+                                             length: RenderData.shared.vertices_triangleStrips.count * MemoryLayout<VertexIn>.stride,
                                              options: [])!
-        let indexBuffer = device.makeBuffer(bytes: indexBytes,
-                                            length: indexBytes.count * MemoryLayout<UInt32>.stride,
+        let indexBuffer = device.makeBuffer(bytes: RenderData.shared.indexBytes,
+                                            length: RenderData.shared.indexBytes.count * MemoryLayout<UInt32>.stride,
                                             options: [])!
 
         renderEncoder.setVertexBuffer(vertexBuffer,
@@ -99,7 +86,7 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
                                      index: 1) // transformConfig is smaller than 4KB
 
         renderEncoder.drawIndexedPrimitives(type: .triangleStrip,
-                                            indexCount: indexBytes.count,
+                                            indexCount: RenderData.shared.indexBytes.count,
                                             indexType: .uint32,
                                             indexBuffer: indexBuffer,
                                             indexBufferOffset: 0,
