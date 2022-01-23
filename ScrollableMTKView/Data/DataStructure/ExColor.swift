@@ -2,12 +2,12 @@ import Foundation
 
 /// 0.0 - 1.0
 struct ExColor {
-    var red: Float
-    var green: Float
-    var blue: Float
+    var red: UInt8
+    var green: UInt8
+    var blue: UInt8
     var alpha: Float
 
-    init(red: Float, green: Float, blue: Float, alpha: Float) {
+    init(red: UInt8, green: UInt8, blue: UInt8, alpha: Float) {
         self.red = red
         self.green = green
         self.blue = blue
@@ -15,7 +15,7 @@ struct ExColor {
     }
 
     static var red: ExColor {
-        return .init(red: 1, green: 0, blue: 0, alpha: 1)
+        return .init(red: 0xFF, green: 0, blue: 0, alpha: 1)
     }
 
     static var black: ExColor {
@@ -23,12 +23,7 @@ struct ExColor {
     }
 
     static var seperator: ExColor {
-        return .init(red: 0, green: 0, blue: 1, alpha: 1)
+        return .init(red: 0, green: 0, blue: 0xFF, alpha: 1)
     }
 
-    // MARK: render in Metal
-
-    var rgba: MetalRGBA {
-        return [red, green, blue, alpha]
-    }
 }

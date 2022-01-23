@@ -9,7 +9,7 @@ let test_strokepoints: [ExPoint] = [
 ]
 
 let test_stroke = ExStroke(type: .common,
-                           color: ExColor(red: 0xee / 256, green: 0x74 / 256, blue: 0x34 / 256, alpha: 1),
+                           color: ExColor(red: 0xee, green: 0x74, blue: 0x34, alpha: 1),
                            path: test_strokepoints)
 
 /// 一个占满第一页的黑色三角形
