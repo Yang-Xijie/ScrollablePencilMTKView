@@ -4,14 +4,14 @@ using namespace metal;
 
 struct VertexOut {
 	MetalPosition4 position[[position]];
-	unsigned int instanceID;
+    unsigned int color_id;
 };
 
 /// draw triangleStrips with a single color
 vertex VertexOut
 vertexShader_drawTriangleStripWithSingleColor(
 	const device MetalPosition2 *vertexArray[[buffer(0)]],
-	const device TransfromConfig *transformConfigArray[[buffer(1)]],
+	constant TransfromConfig *transformConfigArray[[buffer(1)]],
 	unsigned int vid[[vertex_id]],
 	unsigned int iid[[instance_id]]) {
 
@@ -31,7 +31,7 @@ vertexShader_drawTriangleStripWithSingleColor(
 
 	VertexOut out = VertexOut();
 	out.position = MetalPosition4(x, y, 0, 1);
-	out.instanceID = iid;
+//	out.instanceID = iid;
 	return out;
 }
 

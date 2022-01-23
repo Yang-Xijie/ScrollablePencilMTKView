@@ -74,8 +74,6 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
             instanceIndexStart += UInt32(shape.vertices.count)
             indexBytes.append(UInt32.max) // end an instance
         }
-        
-        print(indexBytes)
 
         // MARK: create buffer and set draw primitive
 
@@ -100,14 +98,12 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
         renderEncoder.setFragmentBuffer(colorBuffer,
                                         offset: 0,
                                         index: 0)
-        
 
         renderEncoder.drawIndexedPrimitives(type: .triangleStrip,
                                             indexCount: indexBytes.count,
                                             indexType: .uint32,
                                             indexBuffer: indexBuffer,
                                             indexBufferOffset: 0) // only one instance
-                                            
 
         // MARK: commit
 
