@@ -30,7 +30,7 @@ vertexShader_drawTriangleStripWithSingleColor(
 
 	VertexOut out = VertexOut();
 	out.position = MetalPosition4(x, y, 0, 1);
-	out.color = {in.r/256.0,in.g/256.0,in.b/256.0,in.alpha};
+	out.color = { in.r / 256.0, in.g / 256.0, in.b / 256.0, in.alpha };
 	return out;
 }
 

@@ -23,7 +23,7 @@ class DocumentVC: UIViewController {
     override func loadView() {
         // MARK: document
 
-        document = testExNote
+        document = test_document
 
         // MARK: view
 

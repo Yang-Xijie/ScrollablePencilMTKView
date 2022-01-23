@@ -34,17 +34,17 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
         }
     }
 
-    // MARK: - draw
+    // MARK: draw
 
     func draw(in view: MTKView) {
-        // MARK: - preparation
+        // MARK: preparation
 
         guard let commandBuffer = commandQueue.makeCommandBuffer() else { return }
         guard let renderPassDescriptor = view.currentRenderPassDescriptor else { return }
         renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(1, 1, 1, 1) // white background
         guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else { return }
 
-        // MARK: - create data
+        // MARK: create data
 
         // transform from documentCoordinate to metalNormCoordinate
         var transformConfig = TransfromConfig(documentSize: [document.size.width, document.size.height],
@@ -53,7 +53,8 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
                                               renderViewFrameSize: [Float(renderView.frame.width), Float(renderView.frame.height)],
                                               scrollViewZoomScale: Float(scrollView.zoomScale))
 
-        var all_shapes = document.pageSeperators
+        var all_shapes:[ExShape] = []
+        all_shapes.append(contentsOf: document.pageSeperators)
         all_shapes.append(contentsOf: document.shapes)
 
         var vertices_triangleStrips: [VertexIn] = []
