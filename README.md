@@ -1,5 +1,17 @@
 # ScrollableMTKView with poor performance
 
+Notice: `4d66b83` is better than `b8cc586`. To check this project, use
+
+```shell
+git branch -c newBranch && git switch newBranch && git checkout -f 4d66b83 -- .
+``` 
+
+* b8cc586 - separate RenderData from MetalDelegate; only set data one; bad performance though
+* 4d66b83 - refactor
+* 4c620dc - re-design vertex data structure
+
+- - -
+
 The goal of this project is to integrate `MTKView` with `UIScrollView`.
 
 * On the top the screen is a `UIScrollView` to receive user's gestures.
