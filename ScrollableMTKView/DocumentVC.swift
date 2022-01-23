@@ -3,6 +3,9 @@ import UIKit
 import XCLog
 
 class DocumentVC: UIViewController {
+    /// the opened document
+    var document: ExNoteDocument!
+
     /// scrollView is the front layer to receive user's actions
     var scrollView: UIScrollView!
     /// fullDocumentView is the contentView of the scrollView, which show the document thumbnail page by page
@@ -16,9 +19,6 @@ class DocumentVC: UIViewController {
     var renderView: MTKView!
     /// draw on-screen triangleStrips in renderView
     var renderViewDelegate: RenderViewDelegate!
-
-    /// the opened document
-    var document: ExNoteDocument!
 
     override func loadView() {
         // MARK: document
