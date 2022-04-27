@@ -90,7 +90,7 @@ class DocumentVC: UIViewController {
 
             // MARK: render method
 
-//            rv.preferredFramesPerSecond = 120
+            rv.preferredFramesPerSecond = 120
             rv.isPaused = false // No need for `rv.preferredFramesPerSecond = 120`. It will be automatically decided by device.
             rv.enableSetNeedsDisplay = false // when Apple Pencil or finger strokes, call `draw()` to render a drawable
             rv.autoResizeDrawable = false // set `renderView.drawableSize` by ourselves
@@ -160,7 +160,7 @@ class DocumentVC: UIViewController {
         let y = scrollView.contentOffset.y / scrollView.zoomScale
         renderView.frame.origin = .init(x: x, y: y)
 
-        renderView.draw() // render the frame
+//        renderView.draw() // render the frame
     }
 
     func prepareRenderData() {
