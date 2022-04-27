@@ -9,16 +9,16 @@ extension DocumentVC: UIScrollViewDelegate {
     }
 
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
-        XCLog(.trace,
-              """
-              scrollView.frame \(scrollView.frame)
-              renderView.frame \(renderView.frame)
-              renderView.drawableSize \(renderView.drawableSize)
-
-              scrollContentView.frame \(fullDocumentView.frame)
-              scrollView.contentSize \(scrollView.contentSize)
-              scrollView.contentOffset \(scrollView.contentOffset)
-              """)
+//        XCLog(.trace,
+//              """
+//              scrollView.frame \(scrollView.frame)
+//              renderView.frame \(renderView.frame)
+//              renderView.drawableSize \(renderView.drawableSize)
+//
+//              scrollContentView.frame \(fullDocumentView.frame)
+//              scrollView.contentSize \(scrollView.contentSize)
+//              scrollView.contentOffset \(scrollView.contentOffset)
+//              """)
 
         setRenderViewToScreen()
 

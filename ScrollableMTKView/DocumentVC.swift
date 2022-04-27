@@ -66,7 +66,7 @@ class DocumentVC: UIViewController {
 
         // MARK: - scrollContentView
 
-        fullDocumentView = {
+        fullDocumentView = { // TODO: 添加缩略图？
             let scv = UIView()
             scv.backgroundColor = .orange
             return scv
@@ -118,34 +118,27 @@ class DocumentVC: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        XCLog(.trace, "\(scrollView.frame)")
         let doc_hwratio: Float = document.size.height / document.size.width
 
-        scrollView.zoomScale = 1.0 // reset zoomScale
+//        scrollView.zoomScale = 1.0 // reset zoomScale
 
         // TODO: should change if pages.count changes
         fullDocumentView.frame.size = .init(width: scrollView.frame.width,
                                             height: scrollView.frame.width * CGFloat(doc_hwratio))
         scrollView.contentSize = fullDocumentView.frame.size
-
-        XCLog(.trace,
-              """
-              scrollView.frame \(scrollView.frame)
-              scrollContentView.frame \(fullDocumentView.frame)
-              renderView.frame \(renderView.frame)
-              renderView.drawableSize \(renderView.drawableSize)
-              scrollView.contentOffset \(scrollView.contentOffset)
-              """)
-
+        XCLog(.trace, "\(scrollView.frame)")
         setRenderViewToScreen()
 
-        XCLog(.trace,
-              """
-              scrollView.frame \(scrollView.frame)
-              scrollContentView.frame \(fullDocumentView.frame)
-              renderView.frame \(renderView.frame)
-              renderView.drawableSize \(renderView.drawableSize)
-              scrollView.contentOffset \(scrollView.contentOffset)
-              """)
+//        XCLog(.trace,
+//              """
+//              scrollView.frame \(scrollView.frame)
+//              scrollContentView.frame \(fullDocumentView.frame)
+//              renderView.frame \(renderView.frame)
+//              renderView.drawableSize \(renderView.drawableSize)
+//              scrollView.contentOffset \(scrollView.contentOffset)
+//              """)
     }
 
     func setRenderViewToScreen() {
@@ -159,11 +152,10 @@ class DocumentVC: UIViewController {
         let x = scrollView.contentOffset.x / scrollView.zoomScale
         let y = scrollView.contentOffset.y / scrollView.zoomScale
         renderView.frame.origin = .init(x: x, y: y)
-
-//        renderView.draw() // render the frame
     }
 
     func prepareRenderData() {
+        XCLog(.trace)
         RenderData.shared.all_shapes = []
         RenderData.shared.all_shapes.append(contentsOf: document.pageSeperators)
         RenderData.shared.all_shapes.append(contentsOf: document.shapes)
