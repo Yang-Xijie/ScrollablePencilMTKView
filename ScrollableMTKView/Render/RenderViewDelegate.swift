@@ -79,6 +79,7 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
         // MARK: create data
 
         // transform from documentCoordinate to metalNormCoordinate
+        // FIXME: sceneDidBecomeActive变卡可能是有些东西没算出来 获取不到 然后就丢了几帧 然后一直卡
         var transformConfig = TransfromConfig(documentSize: [document.size.width, document.size.height],
                                               scrollViewContentSize: [Float(scrollView.contentSize.width), Float(scrollView.contentSize.height)],
                                               scrollViewContentOffset: [Float(scrollView.contentOffset.x), Float(scrollView.contentOffset.y)],

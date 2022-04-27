@@ -113,16 +113,11 @@ class DocumentVC: UIViewController {
         fullDocumentView.addSubview(renderView)
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        XCLog(.trace, "\(scrollView.frame)")
+//        printDebugInfo()
         let doc_hwratio: Float = document.size.height / document.size.width
 
-//        scrollView.zoomScale = 1.0 // reset zoomScale
+        //        scrollView.zoomScale = 1.0 // reset zoomScale
 
         // TODO: should change if pages.count changes
         fullDocumentView.frame.size = .init(width: scrollView.frame.width,
@@ -130,15 +125,7 @@ class DocumentVC: UIViewController {
         scrollView.contentSize = fullDocumentView.frame.size
         XCLog(.trace, "\(scrollView.frame)")
         setRenderViewToScreen()
-
-//        XCLog(.trace,
-//              """
-//              scrollView.frame \(scrollView.frame)
-//              scrollContentView.frame \(fullDocumentView.frame)
-//              renderView.frame \(renderView.frame)
-//              renderView.drawableSize \(renderView.drawableSize)
-//              scrollView.contentOffset \(scrollView.contentOffset)
-//              """)
+//        printDebugInfo()
     }
 
     func setRenderViewToScreen() {
@@ -154,7 +141,7 @@ class DocumentVC: UIViewController {
         renderView.frame.origin = .init(x: x, y: y)
     }
 
-    func prepareRenderData() {
+    private func prepareRenderData() { // TODO: 为某一文件准备渲染的数据
         XCLog(.trace)
         RenderData.shared.all_shapes = []
         RenderData.shared.all_shapes.append(contentsOf: document.pageSeperators)
@@ -174,5 +161,15 @@ class DocumentVC: UIViewController {
             RenderData.shared.instanceIndexStart += UInt32(shape.vertices.count)
             RenderData.shared.indexBytes.append(UInt32.max) // end an instance
         }
+    }
+
+    func printDebugInfo() {
+        XCLog(.trace,
+              """
+              scrollView.frame \(scrollView.frame)
+              fullDocumentView.frame \(fullDocumentView.frame)
+              renderView.frame \(renderView.frame)
+              renderView.drawableSize \(renderView.drawableSize)
+              """)
     }
 }

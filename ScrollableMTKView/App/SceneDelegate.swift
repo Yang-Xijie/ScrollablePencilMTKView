@@ -1,24 +1,41 @@
 import UIKit
+import XCLog
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
+    var mainVC: MainVC!
 
     func scene(_ scene: UIScene,
                willConnectTo _: UISceneSession,
                options _: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window!.rootViewController = UINavigationController(rootViewController: MainVC())
+        mainVC = MainVC()
+        window!.rootViewController = UINavigationController(rootViewController: mainVC)
         window!.makeKeyAndVisible()
     }
 
-    func sceneDidDisconnect(_ scene: UIScene) {}
+    func sceneWillResignActive(_ scene: UIScene) {
+        XCLog(.trace)
+        mainVC.documentVC?.renderView.isPaused = true
+    }
 
-    func sceneDidBecomeActive(_ scene: UIScene) {}
+    func sceneDidBecomeActive(_ scene: UIScene) {
+        XCLog(.trace)
+        mainVC.documentVC?.loadView() // TODO: 保存在进入前的位置信息 使用该信息loadView即可
+        mainVC.documentVC?.renderView.isPaused = false
+    }
 
-    func sceneWillResignActive(_ scene: UIScene) {}
+    func sceneWillEnterForeground(_ scene: UIScene) {
+        XCLog(.trace)
+        mainVC.documentVC?.renderView.isPaused = true
+    }
 
-    func sceneWillEnterForeground(_ scene: UIScene) {}
+    func sceneDidEnterBackground(_ scene: UIScene) {
+        XCLog(.trace)
+        mainVC.documentVC?.loadView() // TODO: 保存在进入前的位置信息 使用该信息loadView即可
+        mainVC.documentVC?.renderView.isPaused = false
+    }
 
-    func sceneDidEnterBackground(_ scene: UIScene) {}
+    func sceneDidDisconnect(_ scene: UIScene) { XCLog(.trace) }
 }
