@@ -46,11 +46,29 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
             XCLog(.fatal, "Unable to compile render pipeline state: \(error)")
             return nil
         }
+
+        for _ in 0 ..< MaxFramesInFlight {
+            let a = device.makeBuffer(bytes: RenderData.shared.vertices_triangleStrips,
+                                      length: RenderData.shared.vertices_triangleStrips.count * MemoryLayout<VertexIn>.stride,
+                                      options: [])!
+            vertexBuffer.append(a)
+            indexBuffer.append(device.makeBuffer(bytes: RenderData.shared.indexBytes,
+                                                 length: RenderData.shared.indexBytes.count * MemoryLayout<UInt32>.stride,
+                                                 options: [])!)
+        }
     }
+
+    // flight
+    let MaxFramesInFlight = 3
+    var _currentBuffer = 0
+    var vertexBuffer: [MTLBuffer] = []
+    var indexBuffer: [MTLBuffer] = []
 
     // MARK: draw
 
     func draw(in view: MTKView) {
+        _currentBuffer = (_currentBuffer + 1) % MaxFramesInFlight
+
         // MARK: preparation
 
         guard let commandBuffer = commandQueue.makeCommandBuffer() else { return }
@@ -71,14 +89,16 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
 
         renderEncoder.setRenderPipelineState(pipelineState_drawTriangleStripWithSingleColor)
         renderEncoder.setTriangleFillMode(.fill)
-        let vertexBuffer = device.makeBuffer(bytes: RenderData.shared.vertices_triangleStrips,
-                                             length: RenderData.shared.vertices_triangleStrips.count * MemoryLayout<VertexIn>.stride,
-                                             options: [])!
-        let indexBuffer = device.makeBuffer(bytes: RenderData.shared.indexBytes,
-                                            length: RenderData.shared.indexBytes.count * MemoryLayout<UInt32>.stride,
-                                            options: [])!
 
-        renderEncoder.setVertexBuffer(vertexBuffer,
+        let currentVertexBufferAddr = vertexBuffer[_currentBuffer].contents()
+        let currentVertexBufferData = RenderData.shared.vertices_triangleStrips
+        currentVertexBufferAddr.initializeMemory(as: VertexIn.self, from: currentVertexBufferData, count: RenderData.shared.vertices_triangleStrips.count)
+
+        let currentIndexBufferAddr = indexBuffer[_currentBuffer].contents()
+        let currentIndexBufferData = RenderData.shared.indexBytes
+        currentIndexBufferAddr.initializeMemory(as: UInt32.self, from: currentIndexBufferData, count: RenderData.shared.indexBytes.count)
+
+        renderEncoder.setVertexBuffer(vertexBuffer[_currentBuffer],
                                       offset: 0,
                                       index: 0)
         renderEncoder.setVertexBytes(&transformConfig,
@@ -88,7 +108,7 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
         renderEncoder.drawIndexedPrimitives(type: .triangleStrip,
                                             indexCount: RenderData.shared.indexBytes.count,
                                             indexType: .uint32,
-                                            indexBuffer: indexBuffer,
+                                            indexBuffer: indexBuffer[_currentBuffer],
                                             indexBufferOffset: 0,
                                             instanceCount: 1) // only one instance
 

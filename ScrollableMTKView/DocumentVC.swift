@@ -75,6 +75,8 @@ class DocumentVC: UIViewController {
 
         // MARK: - renderView
 
+        prepareRenderData()
+
         renderView = {
             let rv = MTKView()
 
@@ -113,9 +115,6 @@ class DocumentVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        prepareRenderData()
-        // one shape is an instance
     }
 
     override func viewDidLayoutSubviews() {
@@ -137,7 +136,6 @@ class DocumentVC: UIViewController {
               scrollView.contentOffset \(scrollView.contentOffset)
               """)
 
-        prepareRenderData()
         setRenderViewToScreen()
 
         XCLog(.trace,
@@ -166,6 +164,10 @@ class DocumentVC: UIViewController {
     }
 
     func prepareRenderData() {
+        RenderData.shared.all_shapes = []
+        RenderData.shared.all_shapes.append(contentsOf: document.pageSeperators)
+        RenderData.shared.all_shapes.append(contentsOf: document.shapes)
+
         for shape in RenderData.shared.all_shapes {
             RenderData.shared.vertices_triangleStrips.append(contentsOf: shape.vertices.map {
                 VertexIn(position: $0.position2,
@@ -180,8 +182,5 @@ class DocumentVC: UIViewController {
             RenderData.shared.instanceIndexStart += UInt32(shape.vertices.count)
             RenderData.shared.indexBytes.append(UInt32.max) // end an instance
         }
-
-        RenderData.shared.all_shapes.append(contentsOf: document.pageSeperators)
-        RenderData.shared.all_shapes.append(contentsOf: document.shapes)
     }
 }
