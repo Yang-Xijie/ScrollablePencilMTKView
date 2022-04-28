@@ -21,6 +21,9 @@ class DocumentVC: UIViewController {
     var renderViewDelegate: RenderViewDelegate!
 
     override func loadView() {
+        // FIXME: 看看是不是添加了多次subView？？
+        XCLog(.trace)
+
         // MARK: document
 
         document = test_document
@@ -114,6 +117,7 @@ class DocumentVC: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
+        XCLog(.trace)
 //        printDebugInfo()
         let doc_hwratio: Float = document.size.height / document.size.width
 

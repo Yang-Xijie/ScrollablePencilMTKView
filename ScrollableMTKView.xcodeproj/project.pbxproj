@@ -51,6 +51,7 @@
 		48AA303C2796794100527BAD /* ShaderDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderDefinitions.h; sourceTree = "<group>"; };
 		48AA30412796794100527BAD /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		48AA304527968F8B00527BAD /* ExSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExSize.swift; sourceTree = "<group>"; };
+		48D938EC281ADEFE00468F73 /* URGENT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = URGENT.md; sourceTree = "<group>"; };
 		48DECD8627965BE3005BF878 /* ScrollableMTKView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollableMTKView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48DECD8927965BE3005BF878 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48DECD8B27965BE3005BF878 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -172,6 +173,7 @@
 				48DECD9427965BE7005BF878 /* LaunchScreen.storyboard */,
 				48DECD9727965BE7005BF878 /* Info.plist */,
 				481CC3B32796A52E008E5E51 /* TODO.md */,
+				48D938EC281ADEFE00468F73 /* URGENT.md */,
 				481CC3B42796A6A6008E5E51 /* README.md */,
 			);
 			path = ScrollableMTKView;
@@ -340,7 +342,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = ExNotesBeta/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -397,7 +399,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "${SRCROOT}/ExNotesBeta/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

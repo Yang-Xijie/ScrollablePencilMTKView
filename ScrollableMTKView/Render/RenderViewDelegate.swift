@@ -48,13 +48,13 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
         }
 
         for _ in 0 ..< MaxFramesInFlight {
-            let a = device.makeBuffer(bytes: RenderData.shared.vertices_triangleStrips,
-                                      length: RenderData.shared.vertices_triangleStrips.count * MemoryLayout<VertexIn>.stride,
-                                      options: [])!
-            vertexBuffer.append(a)
+            vertexBuffer.append(device.makeBuffer(bytes: RenderData.shared.vertices_triangleStrips,
+                                                  length: RenderData.shared.vertices_triangleStrips.count * MemoryLayout<VertexIn>.stride,
+                                                  options: [])!)
             indexBuffer.append(device.makeBuffer(bytes: RenderData.shared.indexBytes,
                                                  length: RenderData.shared.indexBytes.count * MemoryLayout<UInt32>.stride,
                                                  options: [])!)
+            transformConfigBuffer.append(TransfromConfig(documentSize: .zero, scrollViewContentSize: .zero, scrollViewContentOffset: .zero, renderViewFrameSize: .zero, scrollViewZoomScale: 1.0))
         }
     }
 
@@ -63,6 +63,7 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
     var _currentBuffer = 0
     var vertexBuffer: [MTLBuffer] = []
     var indexBuffer: [MTLBuffer] = []
+    var transformConfigBuffer: [TransfromConfig] = []
 
     // MARK: draw
 
@@ -78,14 +79,6 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
 
         // MARK: create data
 
-        // transform from documentCoordinate to metalNormCoordinate
-        // FIXME: sceneDidBecomeActive变卡可能是有些东西没算出来 获取不到 然后就丢了几帧 然后一直卡
-        var transformConfig = TransfromConfig(documentSize: [document.size.width, document.size.height],
-                                              scrollViewContentSize: [Float(scrollView.contentSize.width), Float(scrollView.contentSize.height)],
-                                              scrollViewContentOffset: [Float(scrollView.contentOffset.x), Float(scrollView.contentOffset.y)],
-                                              renderViewFrameSize: [Float(renderView.frame.width), Float(renderView.frame.height)],
-                                              scrollViewZoomScale: Float(scrollView.zoomScale))
-
         // MARK: create buffer and set draw primitive
 
         renderEncoder.setRenderPipelineState(pipelineState_drawTriangleStripWithSingleColor)
@@ -99,10 +92,20 @@ class RenderViewDelegate: NSObject, MTKViewDelegate {
         let currentIndexBufferData = RenderData.shared.indexBytes
         currentIndexBufferAddr.initializeMemory(as: UInt32.self, from: currentIndexBufferData, count: RenderData.shared.indexBytes.count)
 
+        // transform from documentCoordinate to metalNormCoordinate
+        // FIXME: sceneDidBecomeActive变卡可能是有些东西没算出来 获取不到 然后就丢了几帧 然后一直卡
+        let transformConfig = TransfromConfig(documentSize: [document.size.width, document.size.height],
+                                              scrollViewContentSize: [Float(scrollView.contentSize.width), Float(scrollView.contentSize.height)],
+                                              scrollViewContentOffset: [Float(scrollView.contentOffset.x), Float(scrollView.contentOffset.y)],
+                                              renderViewFrameSize: [Float(renderView.frame.width), Float(renderView.frame.height)],
+                                              scrollViewZoomScale: Float(scrollView.zoomScale))
+
+        transformConfigBuffer[_currentBuffer] = transformConfig
+
         renderEncoder.setVertexBuffer(vertexBuffer[_currentBuffer],
                                       offset: 0,
                                       index: 0)
-        renderEncoder.setVertexBytes(&transformConfig,
+        renderEncoder.setVertexBytes(&transformConfigBuffer[_currentBuffer],
                                      length: MemoryLayout<TransfromConfig>.stride,
                                      index: 1) // transformConfig is smaller than 4KB
 

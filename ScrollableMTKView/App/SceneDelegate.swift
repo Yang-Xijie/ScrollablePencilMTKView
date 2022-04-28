@@ -17,24 +17,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneWillResignActive(_ scene: UIScene) {
         XCLog(.trace)
-        mainVC.documentVC?.renderView.isPaused = true
+//        mainVC.documentVC?.renderView.isPaused = true
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
         XCLog(.trace)
-        mainVC.documentVC?.loadView() // TODO: 保存在进入前的位置信息 使用该信息loadView即可
-        mainVC.documentVC?.renderView.isPaused = false
+//        mainVC.documentVC?.loadView() // FIXME: 会增加内存！！！ // TODO: 保存在进入前的位置信息 使用该信息loadView即可
+//        mainVC.documentVC?.renderView.isPaused = false
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
         XCLog(.trace)
-        mainVC.documentVC?.renderView.isPaused = true
+        // TODO:
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         XCLog(.trace)
-        mainVC.documentVC?.loadView() // TODO: 保存在进入前的位置信息 使用该信息loadView即可
-        mainVC.documentVC?.renderView.isPaused = false
+        // TODO:
     }
 
     func sceneDidDisconnect(_ scene: UIScene) { XCLog(.trace) }
