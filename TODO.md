@@ -1,5 +1,16 @@
 # TODO
 
+## URGENT
+
+- 刚刚打开app使用的内存是60MB 但是一打开Control Center再放回去就变成120MB了
+    - control+center+effect+metal+performance
+    - loadView里面到底什么东西增多了？引用没释放？RenderView还是用的原来的？感觉像是重新addSubView了
+    - 如何让View重新加载
+    - [Fix for Control Center lag on iOS 9](https://forums.macrumors.com/threads/fix-for-control-center-lag-on-ios-9-2-1-and-possibly-9-2.1946042/) 
+    - https://developer.apple.com/documentation/metal/performance_tuning/using_metal_system_trace_in_instruments_to_profile_your_app
+    - [Apple Developer Forums | CAMetalLayer nextDrawable delay with Control Center](https://developer.apple.com/forums/thread/23798)
+    - [GitHub | flutter/issues: Scrolling is not true 120hz and feels laggy on ProMotion iPhone 13](https://github.com/flutter/flutter/issues/90675)
+
 ## 优化
 
 * 无需按照时间渲染，每次有东西改变的时候自动渲染或手动调用函数渲染

@@ -14,4 +14,4 @@ However, it's not as easy as I thought. Metal is a framework at extremely low le
 
 ## References
 
-[Metal ＋ UIScrollView でズーム＆スクロール可能な２Dアプリに挑戦](https://qiita.com/codelynx/items/0434cdf453c8db6bc357)
+[GitHub | codelynx/Metal2DScrollable: Demonstrate how to zoom and scroll MTKView using UIScrollView](https://github.com/codelynx/Metal2DScrollable)

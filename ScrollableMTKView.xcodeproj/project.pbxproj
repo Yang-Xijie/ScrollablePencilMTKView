@@ -36,7 +36,7 @@
 		481A064B279897D7008BEB4A /* Shader_triangleStrip.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shader_triangleStrip.metal; sourceTree = "<group>"; };
 		481A7854279D76B900D88A83 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		481CC3B32796A52E008E5E51 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
-		481CC3B42796A6A6008E5E51 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		481CC3B42796A6A6008E5E51 /* PROJECT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PROJECT.md; sourceTree = "<group>"; };
 		489C9029279B3DEC000A4933 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		48AA302027965D3C00527BAD /* DocumentVC+Scrollable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentVC+Scrollable.swift"; sourceTree = "<group>"; };
 		48AA3026279678C800527BAD /* RenderViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderViewDelegate.swift; sourceTree = "<group>"; };
@@ -51,7 +51,6 @@
 		48AA303C2796794100527BAD /* ShaderDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderDefinitions.h; sourceTree = "<group>"; };
 		48AA30412796794100527BAD /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		48AA304527968F8B00527BAD /* ExSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExSize.swift; sourceTree = "<group>"; };
-		48D938EC281ADEFE00468F73 /* URGENT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = URGENT.md; sourceTree = "<group>"; };
 		48DECD8627965BE3005BF878 /* ScrollableMTKView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollableMTKView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48DECD8927965BE3005BF878 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48DECD8B27965BE3005BF878 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				481A7854279D76B900D88A83 /* README.md */,
+				481CC3B32796A52E008E5E51 /* TODO.md */,
+				481CC3B42796A6A6008E5E51 /* PROJECT.md */,
 				48DECD8827965BE3005BF878 /* ScrollableMTKView */,
 				48DECD8727965BE3005BF878 /* Products */,
 			);
@@ -172,9 +173,6 @@
 				48DECD9227965BE7005BF878 /* Assets.xcassets */,
 				48DECD9427965BE7005BF878 /* LaunchScreen.storyboard */,
 				48DECD9727965BE7005BF878 /* Info.plist */,
-				481CC3B32796A52E008E5E51 /* TODO.md */,
-				48D938EC281ADEFE00468F73 /* URGENT.md */,
-				481CC3B42796A6A6008E5E51 /* README.md */,
 			);
 			path = ScrollableMTKView;
 			sourceTree = "<group>";
