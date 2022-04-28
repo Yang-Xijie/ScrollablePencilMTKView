@@ -127,7 +127,7 @@ class DocumentVC: UIViewController {
         fullDocumentView.frame.size = .init(width: scrollView.frame.width,
                                             height: scrollView.frame.width * CGFloat(doc_hwratio))
         scrollView.contentSize = fullDocumentView.frame.size
-        XCLog(.trace, "\(scrollView.frame)")
+//        XCLog(.trace, "\(scrollView.frame)")
         setRenderViewToScreen()
 //        printDebugInfo()
     }
