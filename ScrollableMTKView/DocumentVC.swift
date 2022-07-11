@@ -97,6 +97,7 @@ class DocumentVC: UIViewController {
             rv.isPaused = false // No need for `rv.preferredFramesPerSecond = 120`. It will be automatically decided by device.
             rv.enableSetNeedsDisplay = false // when Apple Pencil or finger strokes, call `draw()` to render a drawable
             rv.autoResizeDrawable = false // set `renderView.drawableSize` by ourselves
+            rv.presentsWithTransaction = false
 
             // MARK: delegate
 
@@ -117,22 +118,23 @@ class DocumentVC: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
+        renderView.isPaused = true
         XCLog(.trace)
 //        printDebugInfo()
         let doc_hwratio: Float = document.size.height / document.size.width
 
-        //        scrollView.zoomScale = 1.0 // reset zoomScale
+        scrollView.zoomScale = 1.0 // reset zoomScale
 
         // TODO: should change if pages.count changes
         fullDocumentView.frame.size = .init(width: scrollView.frame.width,
                                             height: scrollView.frame.width * CGFloat(doc_hwratio))
         scrollView.contentSize = fullDocumentView.frame.size
-//        XCLog(.trace, "\(scrollView.frame)")
         setRenderViewToScreen()
-//        printDebugInfo()
+        renderView.isPaused = false
     }
 
     func setRenderViewToScreen() {
+//        XCLog(.trace)
         let w = scrollView.frame.width * 1.0 / scrollView.zoomScale
         let h = scrollView.frame.height * 1.0 / scrollView.zoomScale
         renderView.frame.size = .init(width: w, height: h)
@@ -144,6 +146,7 @@ class DocumentVC: UIViewController {
         let y = scrollView.contentOffset.y / scrollView.zoomScale
         renderView.frame.origin = .init(x: x, y: y)
     }
+    
 
     private func prepareRenderData() { // TODO: 为某一文件准备渲染的数据
         XCLog(.trace)

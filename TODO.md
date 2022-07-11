@@ -10,6 +10,13 @@
     - https://developer.apple.com/documentation/metal/performance_tuning/using_metal_system_trace_in_instruments_to_profile_your_app
     - [Apple Developer Forums | CAMetalLayer nextDrawable delay with Control Center](https://developer.apple.com/forums/thread/23798)
     - [GitHub | flutter/issues: Scrolling is not true 120hz and feels laggy on ProMotion iPhone 13](https://github.com/flutter/flutter/issues/90675)
+    - https://developer.apple.com/documentation/metal/drawable_objects/creating_a_custom_metal_view
+
+## TRY
+
+- SwiftUI MTKView
+- MTKView without UIScrollViewDelegate
+- UIScrollView 里面放多个MTKView（MTKView的drawablesize不能很大）
 
 ## 优化
 

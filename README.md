@@ -6,6 +6,8 @@ The goal of this project is to integrate `MTKView` with `UIScrollView`.
 * Inside the `UIScrollView` is a `UIView` acting as the `contentView` of `UIScrollView`.  
 * Then comes an `MTKView` to render on-screen contents. The `size` is just the size of the screen, and the `drawableSize` is always at the device fitting resolution.
 
+220429 - I don't think this method is great. UIScrollViewDelegate might not work well with MTKView. It might be better to only use one MTKView to cover the full screen and render all things (deal with all user inputs).
+
 ## Background
 
 I want to make a note taking app just like `Notability`, who uses `Metal` framework to render things on the screen.

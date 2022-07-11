@@ -22,8 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneDidBecomeActive(_ scene: UIScene) {
         XCLog(.trace)
-//        mainVC.documentVC?.loadView() // FIXME: 会增加内存！！！ // TODO: 保存在进入前的位置信息 使用该信息loadView即可
 //        mainVC.documentVC?.renderView.isPaused = false
+        XCLog(.debug, "\(mainVC.documentVC?.renderView.preferredFramesPerSecond)")
+        mainVC.documentVC?.renderView.preferredFramesPerSecond = 120
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
